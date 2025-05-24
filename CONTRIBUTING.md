@@ -11,8 +11,8 @@ submitting them for review as a
 :::{hint}
 Because this is a documentation project, only use the `docs` commit
 type when making changes to project meta-documentation such as
-`README.md` or in-line comments.  Use the `feat`, `fix`, `refactor`,
-and `style` commit types to describe content edits.
+`README.md`.  Use the `feat`, `fix`, `refactor`, and `style` commit
+types to describe content edits.
 :::
 
 No commit scopes are currently in use.

@@ -71,28 +71,29 @@ Valid commit types are:
 
 {.glossary}
 `build`
-: changes to the build system or external dependencies, e.g., the
+: a change to the build system or external dependencies, e.g., the
   makefile
 
 {.glossary}
 `chore`
-: miscellaneous tooling changes or tool configuration changes, or
-  changes not covered by the other commit types
+: a miscellaneous tooling or tool configuration change, e.g., the
+  .gitignore file, or a change not covered by the other commit types
 
 {.glossary}
 `ci`
-: changes to continuous integration/continuous delivery (CI/CD)
+: a change to continuous integration/continuous delivery (CI/CD)
   processes, e.g., GitHub Actions
 
 {.glossary}
 `docs`
-: documentation-only changes
+: a documentation-only change, including edits to in-line
+  documentation and comments
 
 :::{hint}
 Because this is a documentation project, only use the `docs` commit
 type when making changes to project meta-documentation such as
-`README.md` or in-line comments.  Use the `feat`, `fix`, `refactor`,
-and `style` commit types to describe content edits.
+`README.md`.  Use the `feat`, `fix`, `refactor`, and `style` commit
+types to describe content edits.
 :::
 
 {.glossary}
@@ -101,8 +102,8 @@ and `style` commit types to describe content edits.
 
 {.glossary}
 `fix`
-: content edits, e.g., correcting grammar/spelling mistakes or factual
-  errors
+: a content edit, e.g., correcting a grammar/spelling mistake or a
+  factual error
 
 {.glossary}
 `refactor`
@@ -110,6 +111,7 @@ and `style` commit types to describe content edits.
 
 {.glossary}
 `style`
-: an edit that only affects formatting
+: an edit that only affects formatting, or a change related to the
+  [linter](linting) configuration
 
 No commit scopes are currently in use.
