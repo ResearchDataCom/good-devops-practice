@@ -60,6 +60,7 @@ readings
 :caption: Version Control
 
 layout
+gitconfig
 gitignore
 atomic
 conventional

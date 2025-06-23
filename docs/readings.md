@@ -23,6 +23,7 @@ workshops, and similar resources.
 
 ## Git
 
+- [_Pro Git_ (2nd. ed.)](https://git-scm.com/book/en/v2)
 - [Git cheat sheet, extended edition](https://jan-krueger.net/git-cheat-sheet-extended-edition)
 - [Confusing git terminology](https://jvns.ca/blog/2023/11/01/confusing-git-terminology/)
 - [Git Happens](https://www.youtube.com/watch?v=SjlxILg69ek)
