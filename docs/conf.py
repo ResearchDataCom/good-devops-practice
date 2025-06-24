@@ -38,6 +38,8 @@ copyright = "2024"
 #: - <inv:sphinx-togglebutton:std:doc#index to add collapsable
 #:   admonitions (notes, warnings, etc.) to built documentation>;
 #:
+#: - to render SVG diagrams (sphinxcontrib-svg2pdfconverter);
+#:
 #: - <inv:sphinxext-opengraph:std:doc#index to turn web pages into
 #:   Open Graph objects>;
 #:
@@ -57,6 +59,7 @@ extensions = [
     "sphinx_pyscript",
     "sphinx_tippy",
     "sphinx_togglebutton",
+    "sphinxcontrib.cairosvgconverter",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
 ]

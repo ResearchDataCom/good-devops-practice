@@ -45,6 +45,7 @@ dev = [
     "rinohtype",
     "sphinx-intl",
     "sphinx-multiversion @ git+https://github.com/Holzhaus/sphinx-multiversion#egg=sphinx-multiversion",
+    "sphinxcontrib-svg2pdfconverter[CairoSVG]",
     "sphobjinv",
     "twine",
     "yapf",

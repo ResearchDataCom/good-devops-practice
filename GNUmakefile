@@ -95,6 +95,7 @@ build-deps:
 		(which port > /dev/null || echo warning: MacPorts not installed) \
 		&& (which act > /dev/null || sudo port -N install act) \
 		&& (which actionlint > /dev/null || sudo port -N install actionlint) \
+		&& (which cairo-sphinx > /dev/null || sudo port -N install cairo libffi) \
 		&& (which jq > /dev/null || sudo port -N install jq) \
 		&& (which python3.12 > /dev/null || sudo port -N install python312) \
 		&& (which shellcheck > /dev/null || sudo port -N install shellcheck) \
@@ -108,6 +109,7 @@ build-deps:
 	$(if $(filter Debian Ubuntu, $(distro)), \
 		sed -i '/deb-src/s/^# //' /etc/apt/sources.list \
 		&& apt-get update \
+		&& (which cairo-sphinx > /dev/null || ($(APT_GET) install cairo python3-dev libffi)) \
 		&& (which jq > /dev/null || ($(APT_GET) install jq)) \
 		&& (which python3.12 > /dev/null \
 			|| (add-apt-repository -y ppa:deadsnakes/ppa \
