@@ -52,7 +52,9 @@ TODO: scope, audience, structure, conventions
 charter
 contributing
 credits
-readings
+training
+glossary
+bibliography
 ```
 
 ```{toctree}
