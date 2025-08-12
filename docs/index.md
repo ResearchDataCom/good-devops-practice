@@ -28,8 +28,8 @@ sd_hide_title: True
 ```{rubric} Good DevOps Practice
 ```
 
-This documents Research Data and Communication Technologies' secure
-software development standards and practices.
+Research Data and Communication Technologies' secure software
+development standards and practices
 
 :::
 

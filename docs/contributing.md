@@ -8,7 +8,6 @@ Please rebase changes on the latest HEAD of the main branch before
 submitting them for review as a
 [GitHub pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests).
 
-
 ## Development Environment
 
 This project requires Python 3.11 or newer.  To set up your
@@ -16,7 +15,6 @@ development environment on Linux or macOS, run these
 [GNU Make](https://www.gnu.org/software/make/) commands from the
 project root directory.
 
-{.glossary}
 `make setup`
 : Create (or update) a
   [Python virtual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments)
@@ -24,13 +22,11 @@ project root directory.
   installation of this project that includes development and testing
   tools.
 
-{.glossary}
 `make pre-commit`
 : Configure optional pre-commit hooks, which require the virtual
   environment to be active in your code editor or
   [Git porcelain](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain).
 
-{.glossary}
 `make clean`
 : Reset the development environment, which includes removing the
   pre-commit hooks.
@@ -38,10 +34,8 @@ project root directory.
 Additional targets are available, several of which are listed below.
 Review the makefile for details.
 
-{.glossary}
 `make lint`
 : Check code syntax and style.
-
 
 ## Code Style
 
@@ -55,19 +49,38 @@ This project follows these code styles:
 
 - [the Home Assistant YAML style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/)
 
-
 ## Commit Messages
 
 This project implements
 [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html) using
-[Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/).
-Please use English in commit messages.  The first line of the commit
-message should be at most 100 characters, while the rest of the commit
-message should be wrapped at column 70.  A commit's description should
-be a verb phrase in the imperative present tense, with the starting
-verb in lower case and no ending punctuation.
+[Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/):
 
-Valid commit types are:
+- Please use English in commit messages.
+
+- The first line of the commit message **SHOULD** be at most 100
+  characters, while the rest of the commit message **SHOULD** be
+  wrapped at column 70.
+
+- The commit description **SHOULD** be an imperative sentence that
+  summarizes the changes, with the starting verb in lower case and no
+  ending punctuation.
+
+- The commit type **MUST** be one of {term}`build`, {term}`chore`,
+  {term}`ci`, {term}`docs`, {term}`feat`, {term}`fix`,
+  {term}`refactor`, or {term}`style`.
+
+### Commit Scopes
+
+An atomic commit can alter multiple files.  For example, an interface
+change would require modifications the class definitions, method
+calls, and property references throughout the codebase.  Per
+_Conventional Commits_, a commit scope is an **OPTIONAL**
+abbreviation, acronym, codename, or keyword that provides additional
+context to reviewers by naming the essential component of the change.
+
+No commit scopes are currently in use.
+
+### Commit Types
 
 {.glossary}
 `build`
@@ -112,6 +125,4 @@ types to describe content edits.
 {.glossary}
 `style`
 : an edit that only affects formatting, or a change related to the
-  [linter](linting) configuration
-
-No commit scopes are currently in use.
+  linter configuration

@@ -4,7 +4,6 @@ This is a curated list of related reading materials, free training,
 workshops, and similar resources, emphasizing cloud infrastructure in
 clinical research settings.
 
-
 ## Basics
 
 - [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
@@ -14,7 +13,6 @@ clinical research settings.
 - [Test-Driven Development](https://tdd.mooc.fi/)
 - [Deep Dive into Modern Web Development](https://fullstackopen.com/)
 
-
 ## Agile Project Management
 
 - [PMI Agile Certified Practitioner (ACP) Exam Content Outline](https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/agile-certified-exam-outline.pdf)
@@ -22,7 +20,6 @@ clinical research settings.
 - [Scrum vs Kanban: Key Differences in Project Management Methodologies](https://community.atlassian.com/forums/Agile/Scrum-vs-Kanban-Key-Differences-in-Project-Management/ba-p/2331061)
 - [Running a Kanban Standup Meeting](https://developer.cyberark.com/blog/running-a-kanban-standup-meeting/)
 - [Use Cases vs. User Stories: How They Differ and When to Use Them](https://www.easyagile.com/blog/use-cases-vs-user-stories/)
-
 
 ## Git
 
@@ -37,7 +34,6 @@ clinical research settings.
   [trunk-based development](https://trunkbaseddevelopment.com/) or
   [topic branches](https://alvinalexander.com/git/git-topic-branch-workflow-pattern-pro-git/)
 
-
 ## Cloud Computing
 
 - [Get Good with GitOps](https://github.com/ResearchDataCom/get-good-with-gitops)
@@ -50,7 +46,6 @@ clinical research settings.
 - [Learn Linux TV: Getting started with Ansible](https://www.youtube.com/playlist?list=PLT98CRl2KxKEUHie1m24-wkyHpEsa4Y70)
 - [Learn Linux TV: Proxmox Full Course](https://www.youtube.com/playlist?list=PLT98CRl2KxKHnlbYhtABg6cF50bYa8Ulo)
 - [Disaster Recovery on AWS](https://disaster-recovery.workshop.aws/)
-
 
 ## Information Security
 
@@ -68,7 +63,6 @@ clinical research settings.
   [[2]](https://news.ycombinator.com/item?id=44362665),
   [[3]](https://news.ycombinator.com/item?id=44362720)
 
-
 ## Programming
 
 - [_Think Python_ (3rd. Ed.)](https://greenteapress.com/wp/think-python-3rd-edition/)
@@ -78,7 +72,6 @@ clinical research settings.
 - [What Are Capabilities?](http://habitatchronicles.com/2017/05/what-are-capabilities/)
 - [Secure Software Development Framework v1.1](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf)
 
-
 ## Testing
 
 - [Selenium WebDriver with Python](https://testautomationu.applitools.com/selenium-webdriver-python-tutorial/)
@@ -87,7 +80,6 @@ clinical research settings.
 - [Unit Testing AWS Lambda with Python and Mock AWS Services Using Moto](https://web.archive.org/web/2/https://medium.com/@seifeddinerajhi/unit-testing-aws-lambda-with-python-and-mock-aws-services-using-moto-80e1855c16e1),
   [supplementary materials](https://github.com/seifrajhi/Python-AWS-Lambda-Testing)
 - [Same Pytest fixtures with different scopes](https://pawamoy.github.io/posts/same-pytest-fixtures-with-different-scopes/)
-
 
 ## Miscellaneous
 

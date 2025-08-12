@@ -1,6 +1,10 @@
-# Prepare these translations.
-TRANSLATIONS=
+# Avoid problems on systems where the SHELL variable might be
+# inherited from the environment.
+SHELL = /bin/sh
 
+# Explicitly clear and then set the suffixes used in implicit rules.
+.SUFFIXES:
+# .SUFFIXES: .c .o
 
 # Search a colon-separated list of directories for one of the given
 # programs, returning the first match.
@@ -11,7 +15,6 @@ $(or \
 			$(wildcard $(addsuffix /$(a), $(subst :, , $(1)))))), \
 	$(3))
 
-
 # Search the Python virtual environment and the executable search path
 # for the programs in the listed order, returning the first match.
 venvsearch = \
@@ -19,44 +22,59 @@ $(if $(call pathsearch,.venv/bin,$(1)), \
 	. .venv/bin/activate; $(1), \
 	$(call pathsearch,$(PATH),$(1),exit 1; echo $(1)))
 
-
 # Develop using the latest available supported version of Python.
 PYTHON = \
-$(call pathsearch,$(PATH),python3.12 python3.11 python3.10,exit 1; echo python3)
+$(call pathsearch,$(PATH),python3.13 python3.12 python3.11,exit 1; echo python3)
 PYTHON_VERSION = \
 $(shell $(PYTHON) -c "import sys;print('{}.{}'.format(*sys.version_info[:2]))")
-
 
 # Use these tools from the development environment, if available.
 PRE_COMMIT  = $(call venvsearch,pre-commit)
 PYTEST      = $(call venvsearch,pytest)
 SPHINXBUILD = $(call venvsearch,sphinx-build)
 SPHINXINTL  = $(call venvsearch,sphinx-intl)
-SPHINXMULTI = $(call venvsearch,sphinx-multiversion)
 TOMLQ       = $(call venvsearch,tomlq)
 YQ          = $(call venvsearch,yq)
 
-
-# Use these settings when developing on Debian/Ubuntu.
-APT_GET = apt-get -o Debug::pkgProblemResolver=yes -y --no-install-recommends
+# On Debian/Ubuntu, install these build dependencies via APT.
 DEBIAN_BUILD_DEPS = \
 	build-essential \
+	devscripts \
+	equivs \
+	python3.13-full \
+	xmlsec1 \
 
+# On Debian/Ubuntu, install these Python packages' build dependencies.
+APT_GET_INSTALL = \
+apt-get -o Debug::pkgProblemResolver=yes -y --no-install-recommends install
+DEBIAN_SOURCE_DEPS = \
+	python3-cairosvg \
+
+# On macOS, install these build dependencies via MacPorts.
+MACPORTS_BUILD_DEPS = \
+	act \
+	actionlint \
+	cairo \
+	jq \
+	libffi \
+	py313-cairosvg \
+	shellcheck \
+	tflint \
 
 # Get the package name.
 PYPACKAGE_NAME = \
 $(shell $(TOMLQ) -r '.tool.setuptools."package-dir"|keys[0]' pyproject.toml)
-
 
 # Recursively list code, content, and test articles (as well as
 # related work in progress).
 SOURCEISH=$(or $(shell git ls-tree --full-tree --name-only -r HEAD src tests))
 UNTRACKED=$(or $(shell git ls-files --others --exclude-standard src tests))
 
+# Prepare these translations of the documentation.
+TRANSLATIONS =
 
-# Enumerate translation targets.
-LOCALES = $(foreach l,$(TRANSLATIONS),docs/_locales/$(l))
-
+# Configure Sphinx, optionally from an environment variable.
+SPHINXOPTS ?=
 
 # List in-use pre-commit hooks.
 PRE_COMMIT_HOOKS = \
@@ -69,15 +87,16 @@ $(addprefix .git/hooks/, \
 	pre-commit \
 )
 
-
 # When adding an alias for a build artifact, add it to this list; cf.
 # https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html.
 # Sort the list alphabetically.
 .PHONY: \
+	all \
+	build-deps \
 	clean \
-	dist \
-	distclean \
+	clean-deps \
 	docs \
+	docsclean \
 	gettext \
 	html \
 	lint \
@@ -87,48 +106,45 @@ $(addprefix .git/hooks/, \
 	setup \
 	venv \
 
+# Set the default target when running `make`.
+all: docs
 
 # Install build dependencies for local development.
 build-deps:
 	$(eval uname = $(or $(shell uname)))
 	$(if $(filter Darwin, $(uname)), \
-		(which port > /dev/null || echo warning: MacPorts not installed) \
-		&& (which act > /dev/null || sudo port -N install act) \
-		&& (which actionlint > /dev/null || sudo port -N install actionlint) \
-		&& (which cairo-sphinx > /dev/null || sudo port -N install cairo libffi) \
-		&& (which jq > /dev/null || sudo port -N install jq) \
-		&& (which python3.12 > /dev/null || sudo port -N install python312) \
-		&& (which shellcheck > /dev/null || sudo port -N install shellcheck) \
-	)
-	$(if $(uname), \
-		$(if $(filter 0, $(or $(shell id -u))),, \
-			@echo You must be root to perform this action.; exit 1))
+		sudo port -N install $(MACPORTS_BUILD_DEPS))
 	$(if $(filter Linux, $(uname)), \
-		$(eval distro = $(or $(shell lsb_release -is))) \
-	)
+		$(eval distro = $(or $(shell lsb_release -is))))
 	$(if $(filter Debian Ubuntu, $(distro)), \
-		sed -i '/deb-src/s/^# //' /etc/apt/sources.list \
-		&& apt-get update \
-		&& (which cairo-sphinx > /dev/null || ($(APT_GET) install cairo python3-dev libffi)) \
-		&& (which jq > /dev/null || ($(APT_GET) install jq)) \
-		&& (which python3.12 > /dev/null \
-			|| (add-apt-repository -y ppa:deadsnakes/ppa \
-				&& $(APT_GET) install python3.12-full \
-				&& curl https://bootstrap.pypa.io/get-pip.py \
-					| python3.12 -)))
-
+		sudo sed -i '/deb-src/s/^# //' /etc/apt/sources.list; \
+		sudo apt-get update; \
+		sudo DEBIAN_FRONTEND=noninteractive \
+			apt-get install -y --no-install-recommends \
+				software-properties-common \
+		; \
+		sudo add-apt-repository -y ppa:deadsnakes/ppa; \
+		sudo DEBIAN_FRONTEND=noninteractive \
+			apt-get install -y --no-install-recommends \
+				$(DEBIAN_BUILD_DEPS) \
+		; \
+		curl https://bootstrap.pypa.io/get-pip.py | python3.13 -; \
+		sudo DEBIAN_FRONTEND=noninteractive \
+			mk-build-deps -i -r -t "$(APT_GET_INSTALL)" \
+				$(DEBIAN_SOURCE_DEPS); \
+		rm -f *.buildinfo *.changes)
 
 # Create the development environment.
 venv .venv:
 	$(PYTHON) -m venv .venv
 	. .venv/bin/activate; python -m pip install -U pip-with-requires-python
 	. .venv/bin/activate; python -m pip install -U pip setuptools
-
+	touch .venv
 
 # Set up the development environment.
 setup $(PYPACKAGE_NAME).egg-info: pyproject.toml .venv
 	. .venv/bin/activate; python -m pip install -e .[dev,test]
-
+	touch $(PYPACKAGE_NAME).egg-info
 
 # Install the pre-commit hooks.
 pre-commit: $(PRE_COMMIT_HOOKS)
@@ -137,51 +153,97 @@ pre-commit: $(PRE_COMMIT_HOOKS)
 	$(PRE_COMMIT) validate-manifest
 	$(PRE_COMMIT) install --install-hooks --hook-type $*
 
-
-# Run the linter (including unstaged changes).
+# Check code syntax and style.
 lint: $(PRE_COMMIT_HOOKS)
 	$(PRE_COMMIT) run --show-diff-on-failure --all-files
 
+# Route these targets to Sphinx using its "make mode" option.
+gettext html: | $(PYPACKAGE_NAME).egg-info
+	$(SPHINXBUILD) -M $@ docs build $(SPHINXOPTS) $(O)
 
-# Generate the documentation.
-gettext build/gettext: | $(PYPACKAGE_NAME).egg-info
-	$(SPHINXBUILD) -b gettext -n docs build $(SPHINXOPTS)
-	touch build/gettext
-
-locale locales: $(LOCALES)
-docs/_locales/%: build/gettext | $(PYPACKAGE_NAME).egg-info
-	mkdir -p $@
+# Prepare or update message catalogs for translation.
+locale locales: $(addprefix docs/_locales/, $(TRANSLATIONS))
+docs/_locales/%: gettext | $(PYPACKAGE_NAME).egg-info
 	$(SPHINXINTL) -c docs/conf.py update -p build -l $*
-	touch $@
 
-docs: $(LOCALES) | $(PYPACKAGE_NAME).egg-info
-	$(foreach l,en $(TRANSLATIONS), \
-		$(SPHINXMULTI) -D language="$(l)" docs build/html/$(l))
-	env LATEST_VERSION=`git describe --tag --abbrev=0` \
-		envsubst < docs/.index.html > build/html/index.html
+# Build the documentation.
+docs: | $(PYPACKAGE_NAME).egg-info
+# Create missing remote-tracking branches.
+	LOCAL_BRANCHES=$$(git branch \
+		| grep -E -v '^..(HEAD|gh-pages|main|master|releases?(/.*)?)$$' \
+		| cut -c 3-); \
+	REMOTE_BRANCHES=$$(git branch -r \
+		| grep -E -v '^.*/(HEAD|gh-pages|main|master|releases?(/.*)?)$$' \
+		| cut -c 3-); \
+	for rb in $$REMOTE_BRANCHES; do \
+		lb=`echo $$rb | sed -e 's|[^/]*/||'`; \
+		echo "$$LOCAL_BRANCHES" | grep ^$$lb\$$ > /dev/null \
+		|| git branch $$lb $$rb; \
+	done
+# Generate the index.
+	mkdir -p build
+	cat /dev/null > build/versions.txt
+	VERSIONS=$$(git tag | sort -r; git branch \
+		| grep -E -v '^..(HEAD|gh-pages|main|master|releases?(/.*)?)$$' \
+		| cut -c 3-); \
+	CURRENT_VERSION=$$(echo $$VERSIONS | head -1); \
+	for v in $$VERSIONS; do \
+		TRANSLATIONS=$$( \
+			echo en; \
+			git ls-tree -r --name-only $$v docs/_locales \
+			| xargs -n 1 basename \
+			| grep -v '^.gitignore$$' \
+		); \
+		echo { \"$$v\": $$(echo "$$TRANSLATIONS" | jq -cRn '[inputs]') } \
+		>> build/versions.txt; \
+	done
+	cat build/versions.txt | jq -s add > build/versions.json
+# Copy the repository to a temporary directory.  Stash the Sphinx
+# configuration from the real work tree for later use.
+	$(eval TMP := $(shell mktemp -d))
+	git clone --mirror . $(TMP)/.git
+	mkdir -p $(TMP)/build/docs
+	cp build/versions.json docs/conf.py docs/_templates/versions.html \
+		$(TMP)/build
+# Build the documentation for each translation of each version.
+	set -Eeou pipefail; \
+	. .venv/bin/activate; \
+	cd $(TMP); \
+	for v in $$(jq -r 'keys[]' build/versions.json); do \
+		env GIT_WORK_TREE=$(TMP) git checkout -f $$v; \
+		cp build/conf.py docs/conf.py; \
+		cp build/versions.html docs/_templates/versions.html; \
+		for l in $$(jq -r --arg v $$v '.[$$v][]' build/versions.json); do \
+			env CURRENT_VERSION=$$v CURRENT_LANGUAGE=$$l \
+				sphinx-build -M html docs build -D language=$$l; \
+			mkdir -p build/docs/$$v; \
+			mv build/html build/docs/$$v/$$l; \
+		done; \
+	done
+	(cd $(TMP)/build; tar cf - docs) | (cd build; tar xf -)
+# Clean up.
+	rm -rf $(TMP)
 
-
-# Build the distribution.
-dist: .coverage
-	. .venv/bin/activate; python -m build
-	. .venv/bin/activate; twine check dist/*
-
-distclean:
-	rm -rf dist
-
+docsclean:
+	rm -rf docs/apidocs build/{docs,gettext,html} build/versions*
 
 # Remove build artifacts and reset the development environment.
-clean:
-	rm -rf build .coverage dist .pytest_cache .venv* docs/apidocs \
-		docs/_locales/en $(PRE_COMMIT_HOOKS)
+clean: docsclean
+	rm -rf build* .pytest_cache .venv* $(PRE_COMMIT_HOOKS)
 	find . -type d -name __pycache__ -print | xargs rm -rf
 	find . -type d -name \*.egg-info -print | xargs rm -rf
-
 
 # This could remove packages other that the ones listed, so keep any
 # confirmation prompts (requires local administrator rights).
 clean-deps:
-	$(if $(uname), \
-		$(if $(filter 0, $(or $(shell id -u))),, \
-			@echo You must be root to perform this action.; exit 1))
-	echo Not implemented.; exit 1
+	$(eval uname = $(or $(shell uname)))
+	$(if $(filter Darwin, $(uname)), \
+		sudo port uninstall $(MACPORTS_BUILD_DEPS))
+	$(if $(filter Linux, $(uname)), \
+		$(eval distro = $(or $(shell lsb_release -is))))
+	$(if $(filter Debian Ubuntu, $(distro)), \
+		sudo apt-mark auto \
+			$(DEBIAN_BUILD_DEPS) \
+			$(addsuffix -build-deps, $(DEBIAN_SOURCE_DEPS)) \
+		; \
+		sudo apt-get autoremove)

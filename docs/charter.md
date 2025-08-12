@@ -7,7 +7,6 @@ and
 ["A Guide to the Project Priorities (Prioritization) Matrix"](https://www.indeed.com/career-advice/career-development/project-priorities-matrix)
 for additional guidance.
 
-
 ## Vision
 
 > Why do this work?  What challenges do we face?
@@ -18,15 +17,15 @@ for additional guidance.
 
 - release features, deploy capability at the speed of need
 
-
 ## Objectives
 
 > What will this project do?  What's our mission?
 
+TODO: refactor this as learning objectives
+
 - establish secure coding standards
 
 - guide staff to useful development tools
-
 
 ## Success Criteria
 
@@ -40,7 +39,6 @@ for additional guidance.
 
 - reduced risk of unplanned outages due to routine maintenance
 
-
 ## Project Priorities
 
 > How is this project constrained?
@@ -50,7 +48,6 @@ for additional guidance.
 |   Constrain<br>(Not negotiable) |                    | ✅               |                     |
 | Accept<br>(Difficult to Change) |                    |                  | ✅                  |
 |         Enhance<br>(Negotiable) | ✅                 |                  |                     |
-
 
 ## Risks
 
@@ -62,7 +59,6 @@ for additional guidance.
 - outputting documents in the desired format
 
 - authoring/editing content
-
 
 ## Stakeholders
 

@@ -5,7 +5,6 @@ and a hardware authentication token.  Create a separate GitHub account
 for work, and don't use personal equipment.  Don't store credentials
 in unencrypted files, even when using full-disk encryption.
 
-
 ## Recommended Software
 
 Developers **SHOULD** use the latest versions of the listed tools to
@@ -30,7 +29,6 @@ subject to client approval, use complementary tools such as
 [edamagit](https://github.com/kahole/edamagit) or
 [Magit](https://magit.vc/).
 
-
 ## Multiple GitHub Accounts
 
 :::{danger}
@@ -52,7 +50,6 @@ devices (e.g., a PIV card, a YubiKey).  Developers **MUST NOT** store
 work-related account information, credentials, and keying material on
 personal equipment, in personal password managers, and the like.
 
-
 ## Attributions
 
 Developers **MUST** use their corporate or client identities when
@@ -62,7 +59,6 @@ be one's preferred name, but some clients require using one's full
 legal name.  Ask your functional area or task area lead for specific
 guidance.  For more information, refer to
 ["Your Identity" in _Pro Git_ (2nd. ed.)](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup#_your_identity).
-
 
 ## Digitally Signed Commits
 
@@ -79,7 +75,6 @@ scdaemon with
 Developers **MUST NOT** store keying material used to sign commits in
 unencrypted files, even if the underlying file system uses full-disk
 encryption.
-
 
 ## Remote Server Access
 

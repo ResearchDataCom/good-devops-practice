@@ -6,14 +6,12 @@ Git repository.  The main branch of the repository only contains
 known-good source code or configuration files, and the head of the
 main branch always matches the latest release or live deployment.
 
-
 ## The Main Branch
 
 The main branch of a Git repository **MUST** contain only released
 software versions or live (production) system definitions.  The main
 branch **MUST NOT** contain work in progress except during initial
 development, prior to the project's initial release or deployment.
-
 
 ## The Head of the Main Branch
 
@@ -25,7 +23,6 @@ branch of the Git repository, the system's secrets or other runtime
 configuration parameters, and a recent copy of the system's persistent
 data storage.
 
-
 ## Feature Branches
 
 All changes to published software or live systems **MUST** be
@@ -36,7 +33,6 @@ The branch name **SHOULD** succinctly describe the work, e.g.,
 `stepup-mfa`, `mfa-enforcement-fixes`.  Multiple feature branches
 **MAY** be worked simultaneously.
 
-
 ## Linear Commit History
 
 Developers **MUST** maintain the linear commit history of a Git
@@ -45,7 +41,6 @@ analysis.  The `--ff-only` option to the `git merge` and `git fetch`
 commands **MUST** always be used.  The `git pull` command's `--rebase`
 option **SHOULD** always be used.  Setting `pull.rebase` to `true` in
 the Git global configuration is **RECOMMENDED**.
-
 
 ## Creating a Feature Branch
 
@@ -65,7 +60,6 @@ tracking at the same time.
 git checkout -b new-feature
 git push origin new-feature
 ```
-
 
 ## Moving Work in Progress to a Feature Branch
 
@@ -119,7 +113,6 @@ git push origin new-feature
 git stash pop
 ```
 
-
 ## Updating a Feature Branch
 
 Because Git supports work occurring simultaneously in multiple clones
@@ -149,7 +142,6 @@ git pull --rebase origin new-feature
 ```sh
 git push --force-with-lease origin new-feature
 ```
-
 
 ## Merging a Feature Branch
 

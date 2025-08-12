@@ -7,7 +7,6 @@ and services.  To provide this reporting capability, all projects
 with the following addenda; cf. [Semantic Versioning](semver) and
 [Linting](linting).
 
-
 ## Language
 
 Commit messages **SHOULD** be written in English using 7-bit ASCII
@@ -15,13 +14,11 @@ encoding.  Other languages or encodings **MAY** be used depending on
 customer requirements.  Regardless of the language, commit messages
 **SHOULD** be otherwise grammatically correct.
 
-
 ## Line Lengths
 
 The first line of the commit message **MUST NOT** exceed 100
 characters in length.  Subsequent lines **SHOULD NOT** be longer than
 70 characters.
-
 
 ## Descriptions
 
@@ -31,7 +28,6 @@ punctuation.  This facilitates the automatic generation of change logs
 from the repository's commit history.  Each commit's description
 becomes a bullet point in a report summarizing the changes that lead
 to a specific release.
-
 
 ## Types
 
@@ -82,11 +78,10 @@ Valid commit types include:
 `test`
 : a new test or a correction to an existing test
 
-
 ## Scopes
 
 An [atomic commit](atomic) can alter multiple files.  For example, an
-interface change would require modifications not to only a class
+interface change would require modifications not only to a class
 definition but also to method calls throughout the codebase.  A
 commit's scope is an **OPTIONAL** abbreviation, acronym, codename, or
 keyword that provides additional context to reviewers by naming the

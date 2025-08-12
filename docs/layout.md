@@ -10,7 +10,6 @@ Developers **MAY** use a
 in the target organization.  Refer to the template repository's
 documentation for further instructions.
 
-
 ## The Repository Name
 
 A project under version control **MUST** have a short, unique,
@@ -37,13 +36,11 @@ audiences.
 The repository name **SHOULD NOT** use pronouns, e.g.,
 `my-updoot-inator`, as projects are intrinsically shared works.
 
-
 ## The Repository Description
 
 The repository **MUST** have a short but concise summary of its
 function or purpose.  This summary **MUST** be used to describe the
 authoritative repository.
-
 
 ## The Authoritative Repository
 
@@ -51,7 +48,6 @@ The authoritative copy of a Git repository **MUST** be hosted by a
 company- or client-approved Git server.  Clones of this repository
 **SHOULD** refer to the authoritative repository as the `origin`
 remote, following community convention and for simplicity's sake.
-
 
 ## The Main Branch
 
@@ -61,7 +57,6 @@ for this branch (e.g., `develop`, `master`), but this branch
 **SHOULD** be renamed `main`.  For simplicity's sake, the rest of this
 document assumes the main branch is called `main`.
 
-
 ## Project Summary
 
 The repository **MUST** include a top-level
@@ -70,7 +65,6 @@ overview of the project.  The document **MUST** start with a level-1
 heading containing the repository name, an single blank line, and the
 repository description.  The rest of document **SHOULD** include quick
 reference material or abbreviated deployment guidance.
-
 
 ## Contribution Guidelines
 
