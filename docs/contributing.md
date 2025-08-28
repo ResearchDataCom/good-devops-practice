@@ -1,4 +1,4 @@
-# Contributing
+# Contribution Guidelines
 
 This project combines
 [atomic commits](https://www.aleksandrhovhannisyan.com/blog/atomic-git-commits/),

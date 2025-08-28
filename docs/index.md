@@ -49,71 +49,14 @@ TODO: scope, audience, structure, conventions
 ```{toctree}
 :hidden:
 
+git/index
+```
+
+```{toctree}
+:hidden:
+:caption: Appendices
+
 charter
 contributing
 credits
-training
-glossary
-bibliography
-```
-
-```{toctree}
-:hidden:
-:caption: Version Control
-
-layout
-gitconfig
-gitignore
-atomic
-conventional
-features
-semver
-```
-
-```{toctree}
-:hidden:
-:caption: Release Engineering
-
-linting
-testing
-sphinx
-builds
-sbom
-packaging
-```
-
-```{toctree}
-:hidden:
-:caption: Infrastructure as Code
-
-secrets
-state
-environments
-monitoring
-```
-
-
-```{toctree}
-:hidden:
-:caption: Style Guides
-
-Bash <bash>
-Docker <docker>
-Docker Compose <compose>
-GNU Make <makefile>
-JavaScript <javascript>
-JSON <json>
-Markdown <markdown>
-OpenTofu <opentofu>
-Python <python>
-TOML <toml>
-YAML <yaml>
-```
-
-```{toctree}
-:hidden:
-:caption: Advanced Topics
-
-apispec
-mvc
 ```
