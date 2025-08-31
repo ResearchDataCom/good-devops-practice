@@ -57,50 +57,25 @@ Learn More
 
 ---
 
-::::::{grid} 1 2 2 3
+::::{grid} 1 2 2 3
 :gutter: 1 1 1 2
 
-:::::{grid-item-card}
+:::{grid-item-card} {octicon}`project;1.5em;sd-mr-1` An Agile Foundation
 :columns: 12
 :link: agile/index
 :link-type: doc
 
-::::{grid} 1 1 1 1
-:gutter: 0
-:margin: 0 0 2 2
-:padding: 0 0 2 2
-
-:::{grid-item} **{octicon}`project;1.5em;sd-mr-1` An Agile Foundation**
-:columns: 4
-:margin: auto
-
-Collaborate with colleagues, customers, and communities.  Respond to
-change while prioritizing incremental results.
-
-:::
-
-::::
+Collaborate with colleagues, customers, and communities.  Focus on
+consistent, incremental results.  Plan ahead, but be responsive to
+change.
 
 +++
-
-::::{grid} 1 1 1 1
-:gutter: 0
-:margin: 0 0 2 2
-:padding: 0 0 2 2
-
-:::{grid-item}
-:columns: 4
-:margin: auto
 
 [Learn more »](agile/index)
 
 :::
 
-::::
-
-:::::
-
-:::::{grid-item-card} {octicon}`git-pull-request;1.5em;sd-mr-1` Versioned, Immutable
+:::{grid-item-card} {octicon}`git-pull-request;1.5em;sd-mr-1` Versioned, Immutable
 :columns: 4
 :link: git/index
 :link-type: doc
@@ -109,9 +84,9 @@ Track changes to software products and system definitions.
 
 +++
 [Learn more »](git/index)
-:::::
+:::
 
-:::::{grid-item-card} {octicon}`code-review;1.5em;sd-mr-1` Continuous Integration
+:::{grid-item-card} {octicon}`code-review;1.5em;sd-mr-1` Continuous Integration
 :columns: 4
 :link: build/index
 :link-type: doc
@@ -121,9 +96,9 @@ product packaging.
 
 +++
 [Learn more »](build/index)
-:::::
+:::
 
-:::::{grid-item-card} {octicon}`cloud;1.5em;sd-mr-1` Continuous Delivery
+:::{grid-item-card} {octicon}`cloud;1.5em;sd-mr-1` Continuous Delivery
 :columns: 4
 :link: deploy/index
 :link-type: doc
@@ -133,9 +108,9 @@ fixes at the speed of need.
 
 +++
 [Learn more »](deploy/index)
-:::::
+:::
 
-::::::
+::::
 
 ---
 

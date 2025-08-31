@@ -65,7 +65,7 @@ extensions = [
 ]
 """This documentation uses several Sphinx extensions.
 
-<inv:myst:std:doc#index myst-parser>
+<inv:myst-parser:std:doc#index myst-parser>
 : Render Markdown in documentation and docstrings.
 
 <inv:sphinx:std:doc#usage/extensions/githubpages sphinx.ext.githubpages>
@@ -104,7 +104,7 @@ extensions = [
 
 intersphinx_mapping = {
     "black": ("https://black.readthedocs.io/en/stable/", None),
-    "myst": ("https://myst-parser.readthedocs.io/en/latest/", None),
+    "myst-parser": ("https://myst-parser.readthedocs.io/en/latest/", None),
     "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
     "book-theme": ("https://sphinx-book-theme.readthedocs.io/en/stable/", None),
     "pydata-theme": ("https://pydata-sphinx-theme.readthedocs.io/en/latest/", None),
