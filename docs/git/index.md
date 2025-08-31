@@ -16,6 +16,7 @@ For other contracts, ask your program manager.
 
 config
 layout
+gitignore
 atomic
 conventional
 workflow

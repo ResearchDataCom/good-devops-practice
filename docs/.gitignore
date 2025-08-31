@@ -1,0 +1,3 @@
+# Override the top-level exclusion as the folder containing CI
+# guidance shares its name with a temporary directory.
+!build/
