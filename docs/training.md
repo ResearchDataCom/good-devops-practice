@@ -1,10 +1,15 @@
 # Training Materials
 
-This is a curated list of related reading materials, free training,
-workshops, and similar resources, emphasizing cloud infrastructure in
-clinical research settings.
+{attribution="Aristotle, _Nicomachean Ethics_"}
+> Neither by nature, then, nor contrary to nature do the virtues arise
+> in us; rather we are adapted by nature to receive them, and are made
+> perfect by habit.
 
-## Basics
+This is a curated list of related reading materials, free training,
+workshops, and similar resources, with an emphasis on cloud
+infrastructure in clinical research settings.
+
+## Foundations
 
 - [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
 - [Git Immersion](https://gitimmersion.com/)
@@ -13,7 +18,7 @@ clinical research settings.
 - [Test-Driven Development](https://tdd.mooc.fi/)
 - [Deep Dive into Modern Web Development](https://fullstackopen.com/)
 
-## Agile Project Management
+## Project Management
 
 - [PMI Agile Certified Practitioner (ACP) Exam Content Outline](https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/agile-certified-exam-outline.pdf)
 - [Running Agile projects in GitHub Projects](https://blog.lpains.net/posts/2022-09-05-github-sprint-projects/)
@@ -21,7 +26,7 @@ clinical research settings.
 - [Running a Kanban Standup Meeting](https://developer.cyberark.com/blog/running-a-kanban-standup-meeting/)
 - [Use Cases vs. User Stories: How They Differ and When to Use Them](https://www.easyagile.com/blog/use-cases-vs-user-stories/)
 
-## Git
+## Version Control
 
 - [_Pro Git_ (2nd. ed.)](https://git-scm.com/book/en/v2)
 - [Git cheat sheet, extended edition](https://jan-krueger.net/git-cheat-sheet-extended-edition)
@@ -72,7 +77,7 @@ clinical research settings.
 - [What Are Capabilities?](http://habitatchronicles.com/2017/05/what-are-capabilities/)
 - [Secure Software Development Framework v1.1](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf)
 
-## Testing
+## Test-driven Development
 
 - [Selenium WebDriver with Python](https://testautomationu.applitools.com/selenium-webdriver-python-tutorial/)
 - [Automated UI Testing with Selenium & PyTest](https://www.tim-corley.dev/blog/automated-ui-testing-with-selenium-pytest),
