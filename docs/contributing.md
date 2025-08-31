@@ -103,10 +103,12 @@ No commit scopes are currently in use.
   documentation and comments
 
 :::{hint}
+
 Because this is a documentation project, only use the `docs` commit
 type when making changes to project meta-documentation such as
 `README.md`.  Use the `feat`, `fix`, `refactor`, and `style` commit
 types to describe content edits.
+
 :::
 
 {.glossary}

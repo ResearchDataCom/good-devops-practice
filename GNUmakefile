@@ -206,7 +206,6 @@ docs: | $(PYPACKAGE_NAME).egg-info
 	cp build/versions.json docs/conf.py docs/_templates/versions.html \
 		$(TMP)/build
 # Build the documentation for each translation of each version.
-	set -Eeou pipefail; \
 	. .venv/bin/activate; \
 	cd $(TMP); \
 	for v in $$(jq -r 'keys[]' build/versions.json); do \

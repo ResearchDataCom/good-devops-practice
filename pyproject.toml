@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 # cf. tool.setuptools.package-dir section below
 name = "good-devops-practice"
-description = "Secure software development standards and practices"
+description = "Research Data and Communication Technologies' secure software development standards and practices enable research at scale."
 version = "0.0.0"
 # cf. https://www.bitecode.dev/p/relieving-your-python-packaging-pain,
 # https://devguide.python.org/versions/
