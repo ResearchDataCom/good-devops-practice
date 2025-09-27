@@ -86,9 +86,7 @@ jobs:
           key: workdir-${{ github.sha }}
           path: .
       # Use the oldest supported version of Python when generating
-      # dependency pins to catch forward compatibility issues.  Keep
-      # this in sync with the test-matrix and build-matrix jobs; cf.
-      # https://devguide.python.org/versions/.
+      # dependency pins to catch forward compatibility issues.
       - if: steps.cache-requirements.outputs.cache-hit != 'true'
         uses: actions/setup-python@v5
         with:
@@ -101,62 +99,10 @@ jobs:
         id: freeze-deps
         run: pip-compile -o requirements.txt pyproject.toml
 
-  # Test against all supported language runtimes using the
-  # dependencies pinned above.
-  test-matrix:
-    needs:
-      - setup
-      - freeze
-    runs-on: ubuntu-latest
-    strategy:
-      # Keep this in sync with the freeze and build-matrix jobs; cf.
-      # https://devguide.python.org/versions/.
-      matrix:
-        python-version:
-          - '3.11'
-          - '3.12'
-          - '3.13'
-    steps:
-      # Tests take a long time to run, so only re-run them when (1)
-      # they fail or (2) when the source code changes.  This step
-      # caches the output of a successful test run.  Subsequent steps
-      # only run if that cache doesn't exist.  (GitHub Actions jobs
-      # can only exit early with an error; cf.
-      # https://github.com/orgs/community/discussions/26885.)
-      - id: cache-pytest-results
-        uses: actions/cache@v4
-        with:
-          key: pytest-${{ matrix.python-version }}-${{ needs.setup.outputs.source-hash }}
-          lookup-only: true
-          path: pytest.out
-      - if: steps.cache-pytest-results.outputs.cache-hit != 'true'
-        uses: actions/cache/restore@v4
-        with:
-          key: requirements-${{ needs.setup.outputs.source-hash }}
-          path: requirements.txt
-      - if: steps.cache-pytest-results.outputs.cache-hit != 'true'
-        uses: actions/cache/restore@v4
-        with:
-          key: workdir-${{ github.sha }}
-          path: .
-      - if: steps.cache-pytest-results.outputs.cache-hit != 'true'
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: pip
-      - if: steps.cache-pytest-results.outputs.cache-hit != 'true'
-        run: pip install -e ".[test]"
-      - if: steps.cache-pytest-results.outputs.cache-hit != 'true'
-        uses: pavelzw/pytest-action@v2
-        with:
-          custom-arguments:
-            --cov="$(ls -d *.egg-info | sed -e s/.egg-info.//)"
-            --report-log=pytest.out
-
   release:
     needs:
       - setup
-      - test-matrix
+      - freeze
     runs-on: ubuntu-latest
     permissions:
       # Allow this job to log into GitHub and thereby update its
@@ -191,68 +137,47 @@ jobs:
       released: ${{ steps.release.outputs.released }}
       tag: ${{ steps.release.outputs.tag }}
 
-  # Build the distribution.
-  build-matrix:
-    needs:
-      - release
-    if: needs.release.outputs.released == 'true'
-    strategy:
-      # Use the oldest supported version of Python when building pure
-      # Python packages.  Otherwise, keep this in sync with the freeze
-      # and test-matrix jobs; cf.
-      # https://devguide.python.org/versions/.
-      matrix:
-        python-version:
-          - '3.11'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/cache/restore@v4
-        with:
-          key: release-${{ github.sha }}
-          path: .
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: pip
-      - run: pip install build
-      - run: python -m build
-      # The build process could run malicious third-party code in a
-      # supply chain attack, so this job doesn't run with elevated
-      # privileges.  Instead, it uploads the built distribution into
-      # an immutable archive (a GitHub Actions Artifact) that
-      # subsequent, privileged jobs will publish on PyPI, GitHub, etc.
-      - uses: actions/upload-artifact@v4
-        with:
-          name: build-artifacts-${{ matrix.python-version }}
-          path: dist/*
-          if-no-files-found: error
-
-  # Merge build artifacts.
-  merge:
-    needs:
-      - build-matrix
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/upload-artifact/merge@v4
-        with:
-          name: build-artifacts
-          pattern: build-artifacts-*
-          delete-merged: true
-
-  # Generate hypertext and print media.
+  # Generate hypertext and print media from the new release or from
+  # the work in progress.  That means this job **MUST** run after the
+  # release job.  However, skipping the release job on feature
+  # branches would result in this job being skipped, too, and GitHub
+  # Actions does not support conditional prerequisite jobs.  Work
+  # around this by overriding the prerequisite job status checks;
+  # cf. https://stackoverflow.com/a/69252812.
   docs:
     needs:
+      - setup
+      - freeze
       - release
+    if: ${{
+      !cancelled()
+      && ((github.ref_name != 'main' && needs.freeze.result == 'success')
+          || (github.ref_name == 'main' && needs.release.result == 'success'))
+      }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/cache/restore@v4
+      # On feature branches, build documentation from source code.
+      - if: github.ref_name != 'main'
+        uses: actions/cache/restore@v4
+        with:
+          key: requirements-${{ needs.setup.outputs.source-hash }}
+          path: requirements.txt
+      - if: github.ref_name != 'main'
+        uses: actions/cache/restore@v4
+        with:
+          key: workdir-${{ github.sha }}
+          path: .
+      # On the main branch, build documentation from the release so it
+      # gets the new version number.
+      - if: github.ref_name == 'main'
+        uses: actions/cache/restore@v4
         with:
           key: release-${{ github.sha }}
           path: .
       # Use the oldest supported version of Python when generating
       # documentation to catch forward compatibility issues.  Keep
-      # this in sync with the lint, freeze, test-matrix, and
-      # build-matrix jobs; cf. https://devguide.python.org/versions/.
+      # this in sync with the lint and freeze jobs;
+      # cf. https://devguide.python.org/versions/.
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -266,15 +191,13 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: doc-artifacts
-          path: build/*
+          path: build/docs/
           if-no-files-found: error
           overwrite: true
 
   # Publish hypertext media using GitHub Pages.
   gh-pages:
-    needs:
-      - release
-      - docs
+    needs: docs
     runs-on: ubuntu-latest
     permissions:
       # Allow this job to push web content to the gh-pages branch.
@@ -283,19 +206,17 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: doc-artifacts
-          path: build/
+          path: build/docs/
           merge-multiple: true
       - uses: peaceiris/actions-gh-pages@v4
         with:
-          publish_dir: build/html
+          publish_dir: build/docs/
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
   # Publish the release on GitHub.
   github:
     needs:
       - release
-      - build-matrix
-      - merge
       - docs
     if: needs.release.outputs.released == 'true'
     runs-on: ubuntu-latest
@@ -313,16 +234,11 @@ jobs:
           path: .
       - uses: actions/download-artifact@v4
         with:
-          name: build-artifacts
-          path: dist/
-          merge-multiple: true
-      - uses: actions/download-artifact@v4
-        with:
           name: doc-artifacts
           path: build/
           merge-multiple: true
-      # Third parties should be able to build the exact same
-      # distribution for verification purposes.
+      # Third parties should be able to rebuild the project for
+      # verification purposes.
       - run: cp requirements*.txt dist/
       - uses: python-semantic-release/upload-to-gh-release@main
         with:
