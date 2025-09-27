@@ -124,16 +124,14 @@ fixes at the speed of need.
 Sentences using these key words appear in block quotes, like above.
 An explanation of the rationale for the rule plus supporting material
 appears after in separate paragraphs, like this.  Usually, each rule
-appears under its own heading, which facilitates direct links to
-guidance.
+falls under its own heading, which facilitates direct links to
+authoritative guidance.
 
 ## Scope
 
-> This document **SHALL** govern the Research Data and Communication
-> Technologies (RDCT) software development life cycle.
-
-It incorporates material from several sources, including the
-following:
+This document governs the life cycle of the RDCT Engineering team's
+products or services.  It incorporates material from several sources,
+including the following:
 
 - [NIST _Secure Software Development Framework_ version 1.1](https://csrc.nist.gov/Projects/ssdf)
 - [ISPE _Good Automated Manufacturing Practice_ version 5](https://ispe.org/initiatives/regulatory/what-gamp)
@@ -143,15 +141,13 @@ following:
 
 ## Audience
 
-> Members of the RDCT Engineering team **SHALL** follow these
-> standards and practices as they develop and operate accredited,
-> validated systems for government, for research and education, and
-> for commerce.
-
-This is not limited to pure software development activites and can
-include, for example, documentation and systems integrations.  This
-also includes company (internal) projects, which act as both
-on-the-job DevOps training and process quality control.
+Members of the RDCT Engineering team follow these standards and
+practices as they develop and operate accredited, validated systems
+for government, for research and education, and for commerce.  This is
+not limited to pure software development activites and can include,
+for example, documentation or system integrations.  This also includes
+company (internal) projects, which act as both on-the-job DevOps
+training activities and process quality controls.
 
 ## Authoring
 
@@ -168,11 +164,11 @@ process described herein.
 ## Structure
 
 This document is currently arranged into three major sections.  The
-frontmatter contains document-specific esoterica including adoption
-strategies and training materials.  The main body of the work provides
-guidance covering project management, version control, continuous
-integration, and continuous delivery.  Appendices include
-supplementary---but still authoritative---material.
+frontmatter contains document-specific esoterica including strategic
+plans, blueprints for adoption, and training materials.  The main body
+of the work provides guidance covering project management, version
+control, continuous integration, and continuous delivery.  Appendices
+include supplementary---but still authoritative---material.
 
 ```{toctree}
 :hidden:
