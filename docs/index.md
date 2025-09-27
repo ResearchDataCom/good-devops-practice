@@ -29,7 +29,7 @@ sd_hide_title: True
 ```
 
 Research Data and Communication Technologies' secure software
-development standards and practices enable research at scale.
+development and IT operations discipline enables research at scale.
 
 ````{div} sd-d-flex-row
 
