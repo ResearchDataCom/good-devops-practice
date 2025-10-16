@@ -6,8 +6,8 @@ and SAFe.
 ```{toctree}
 :hidden:
 
-standup
 charter
+standup
 sprints
 backlog
 ```

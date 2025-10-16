@@ -173,11 +173,11 @@ include supplementary---but still authoritative---material.
 ```{toctree}
 :hidden:
 
+charter
+contributing
+credits
 roadmap
 training
-contributing
-charter
-credits
 ```
 
 ```{toctree}

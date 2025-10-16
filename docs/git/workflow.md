@@ -173,6 +173,7 @@ Ask your functional area or task area lead for specific guidance.
 :align: center
 
 Diverging Branches
+
 :::
 
 > Merge commits **MUST NOT** be used as they can hide risky code

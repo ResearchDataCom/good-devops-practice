@@ -1,4 +1,4 @@
-# Style Guide
+# Style Guides
 
 A common style makes code reviews easier by minimizing spurious code
 differences.
