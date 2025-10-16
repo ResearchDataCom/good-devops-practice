@@ -38,6 +38,7 @@ dev = [
     "pystemmer",
     "python-semantic-release",
     "rinohtype",
+    "sphinxcontrib-bibtex",
     "sphinxcontrib-svg2pdfconverter[CairoSVG]",
     "sphinx-book-theme",
     "sphinx-intl",

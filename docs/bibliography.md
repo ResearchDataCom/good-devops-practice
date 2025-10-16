@@ -1,1 +1,6 @@
 # Annotated Bibliography
+
+:::{bibliography}
+:all:
+
+:::

@@ -59,6 +59,7 @@ extensions = [
     "sphinx_pyscript",
     "sphinx_tippy",
     "sphinx_togglebutton",
+    "sphinxcontrib.bibtex",
     "sphinxcontrib.cairosvgconverter",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
@@ -90,6 +91,11 @@ extensions = [
 : Add collapsable admonitions (notes, warnings, etc.) to built
   documentation.
 
+<inv:sphbibtex:std:doc#index sphinxcontrib-bibtex>
+: Allow BibTeX citations to be inserted into documentation generated
+  by Sphinx via a bibliography directive, along with `cite:p` and
+  `cite:t` roles.
+
 [sphinxcontrib.cairosvgconverter](https://pypi.org/project/sphinxcontrib-svg2pdfconverter/)
 : Convert SVG diagrams to PDF for output formats that do not support
   SVG natively.
@@ -109,6 +115,7 @@ intersphinx_mapping = {
     "book-theme": ("https://sphinx-book-theme.readthedocs.io/en/stable/", None),
     "pydata-theme": ("https://pydata-sphinx-theme.readthedocs.io/en/latest/", None),
     "copybutton": ("https://sphinx-copybutton.readthedocs.io/en/latest/", None),
+    "sphbibtex": ("https://sphinxcontrib-bibtex.readthedocs.io/en/latest/", None),
     "sphinx-design": ("https://sphinx-design.readthedocs.io/en/latest/", None),
     "sphinx-pyscript": ("https://sphinx-pyscript.readthedocs.io/en/latest/", None),
     "sphinx-tippy": ("https://sphinx-tippy.readthedocs.io/en/latest/", None),
@@ -173,6 +180,9 @@ myst_enable_checkboxes = True
 myst_footnote_transition = True
 
 myst_heading_anchors = 2
+
+bibtex_bibfiles = ["refs.bib"]
+"""[BibTeX](http://www.bibtex.org/) citations."""
 
 html_theme = "sphinx_book_theme"
 """Use the Sphinx Book Theme template for web content."""
