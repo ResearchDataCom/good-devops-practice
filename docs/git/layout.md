@@ -66,7 +66,8 @@ regarding [Conventional Commits](conventional), such as specifying
 active scopes.  It ends with a link to project documentation generated
 from a Markdown document named `docs/contributing.md`, also titled
 `Contribution Guidelines`, that provides a more detailed specification
-the development environment and the release engineering process.
+the project-specific development environment and the release
+engineering process.
 
 ## Development Process Automation
 

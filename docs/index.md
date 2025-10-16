@@ -178,6 +178,7 @@ contributing
 credits
 roadmap
 training
+tooling
 ```
 
 ```{toctree}
