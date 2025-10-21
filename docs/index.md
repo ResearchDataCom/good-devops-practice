@@ -134,9 +134,13 @@ products or services.  It incorporates material from several sources,
 including the following:
 
 - [NIST _Secure Software Development Framework_ version 1.1](https://csrc.nist.gov/Projects/ssdf)
+
 - [ISPE _Good Automated Manufacturing Practice_ version 5](https://ispe.org/initiatives/regulatory/what-gamp)
-- [FDA _Computer Software Assurance for Production and Quality System Software_ (2022 draft)](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/computer-software-assurance-production-and-quality-system-software)
+
+- [FDA _Computer Software Assurance for Production and Quality System Software_](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/computer-software-assurance-production-and-quality-system-software-0)
+
 - [OWASP _DevSecOps Guideline_](https://owasp.org/www-project-devsecops-guideline/)
+
 - [_DevSecOps Playbook_](https://github.com/6mile/DevSecOps-Playbook)
 
 ## Audience
