@@ -20,6 +20,36 @@ from importlib.machinery import SourceFileLoader
 from pathlib import Path
 
 import sphinx_book_theme
+from rinoh.flowable import DummyFlowable, Flowable
+from rinoh.frontend.rst import DocutilsBodyNode
+
+
+class RinohPassthroughTextElement(DocutilsBodyNode):
+    """PassthroughTextElement translator class.
+
+    This facilitates support for <inv:sphinx-design:std:doc#cards> by
+    rinohtype.  Refer to
+    [brechtm/rinohtype#201](https://github.com/brechtm/rinohtype/issues/201)
+    for more information.
+
+    """
+
+    node_name = "PassthroughTextElement"
+    """rinohtype assumes that docutils node classes have lowercase
+    names, which gets overridden here.
+
+    """
+
+    def build_flowable(self) -> Flowable:
+        """Do not render this text element.
+
+        Refer to
+        {py:class}`sphinx_design.shared.PassthroughTextElement` for
+        more information.
+
+        """
+        return DummyFlowable()
+
 
 # Enable builds from outside the docs directory.
 _srcpath = (Path(__file__).parent / ".." / "src").absolute()
@@ -245,3 +275,6 @@ html_context = {
     "current_language": os.environ.get("CURRENT_LANGUAGE", "en"),
     "versions": _versions,
 }
+
+rinoh_documents = [{"doc": "index", "target": "manual"}]
+"""Configure rinohtype's Sphinx builder."""

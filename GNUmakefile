@@ -104,6 +104,7 @@ $(addprefix .git/hooks/, \
 	locale \
 	locales \
 	pre-commit \
+	rinoh \
 	setup \
 	venv \
 
@@ -160,7 +161,7 @@ lint: $(PRE_COMMIT_HOOKS)
 	$(PRE_COMMIT) run --show-diff-on-failure --all-files
 
 # Route these targets to Sphinx using its "make mode" option.
-gettext html: | $(PYPACKAGE_NAME).egg-info
+gettext html rinoh: | $(PYPACKAGE_NAME).egg-info
 	$(SPHINXBUILD) -M $@ docs build $(SPHINXOPTS) $(O)
 
 # Prepare or update message catalogs for translation.
