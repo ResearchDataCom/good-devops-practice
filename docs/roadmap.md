@@ -18,11 +18,11 @@ publishing or deploying changes correctly.
 The DevOps Process
 
 This represents the eight-step DevOps process loop with an infinity
-symbol.  The left lobe of the infinity symbol represents software
+symbol.  The left lobe of the infinity symbol encompasses software
 engineering activities (counter-clockwise from the top, the plan,
 test, code, and release steps); the right lobe, infrastructure support
 (clockwise from the top, the build, deploy, operate, and feedback
-steps).  The intersection of development and operations is represented
+steps).  The intersection of development and operations is illustrated
 by the release step crossing under the feedback step, with each
 connecting to the opposite lobe (the build and plan steps,
 repsectively).  Each step builds on the previous and feeds into the
