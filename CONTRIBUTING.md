@@ -10,12 +10,12 @@ Changes must be self-contained.  Please rebase changes on the latest
 HEAD of the main branch before submitting them for review as a
 [GitHub pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests).
 
-:::{hint}
-Because this is a documentation project, only use the `docs` commit
-type when making changes to project meta-documentation such as
-`README.md`.  Use the `feat`, `fix`, `refactor`, and `style` commit
-types to describe content edits appropriately.
-:::
+> [!TIP]
+>
+> Because this is a documentation project, only use the `docs` commit
+> type when making changes to project meta-documentation such as this.
+> Use the `feat`, `fix`, `refactor`, and `style` commit types to
+> describe content edits appropriately.
 
 No commit scopes are currently in use.
 
