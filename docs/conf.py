@@ -221,7 +221,9 @@ html_theme_path = [sphinx_book_theme.get_html_theme_path()]
 
 html_theme_options = {
     "home_page_in_toc": True,
-    "repository_url": "https://github.com/ResearchDataCom/good-devops-practice",
+    "repository_url": (
+        repo_url := "https://github.com/ResearchDataCom/good-devops-practice"
+    ),
     "path_to_docs": "docs",
     "use_edit_page_button": True,
     "use_repository_button": True,
@@ -275,6 +277,36 @@ html_context = {
     "current_language": os.environ.get("CURRENT_LANGUAGE", "en"),
     "versions": _versions,
 }
+
+myst_url_schemes = {
+    "http": None,
+    "https": None,
+    "mailto": None,
+    "ftp": None,
+    "doi": "https://doi.org/{{path}}",
+    "github": {
+        "classes": ["github"],
+        "url": (
+            f"{repo_url}/blob/{html_context['current_version']}"
+            "/{{path}}#{{fragment}}"
+        ),
+    },
+    "wiki": "https://en.wikipedia.org/wiki/{{path}}#{{fragment}}",
+}
+"""Define custom URL schemes;
+cf. <inv:myst:std:doc#syntax/cross-referencing>.
+
+:::{note}
+
+Preview builds of the documentation, e.g., created by the `make html`
+command, will not have valid links to source code on GitHub.  The
+`github:` scheme only correctly accounts for the project's current
+version when performing a multi-version build of the documentation via
+the `make docs` command.
+
+:::
+
+"""
 
 rinoh_documents = [{"doc": "index", "target": "manual"}]
 """Configure rinohtype's Sphinx builder."""
