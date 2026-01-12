@@ -25,7 +25,7 @@ test, code, and release steps); the right lobe, infrastructure support
 steps).  The intersection of development and operations is illustrated
 by the release step crossing under the feedback step, with each
 connecting to the opposite lobe (the build and plan steps,
-repsectively).  Each step builds on the previous and feeds into the
+respectively).  Each step builds on the previous and feeds into the
 next.
 
 :::
@@ -47,37 +47,39 @@ project management techniques as needed.
 > Isolate changes in feature branches.  Develop tests first.  Refactor
 > as needed.
 
-Perform static code analysis and enforce common code styles using
-linters run by Git pre-commit hooks.  Bootstrap test-driven
-development by scripting manual checks with a testing framework.  Run
-linters and test suites automatically using GitHub Actions,
-facilitating code reviews and automatic merging.
+Adopt a feature branch workflow by restricting the main branch to
+working, known-good code.  Bootstrap test-driven development by
+scripting manual checks with a testing framework.
 
 ## Code
 
 > Only commit working, related changes.  Describe their impact and
 > purpose.
 
-Begin adopting a feature branch workflow by restricting the main
-branch to working, known-good code.  Practice atomic commits while
-using Conventional commit messages.
+Change one thing at a time following the single-responsibility
+principle.  Characterize each change as a fix, a new feature, or a
+breaking change.  Perform static code analysis and enforce common code
+styles using linters run by Git pre-commit hooks.  Write product
+documentation in tandem with code using comments, docstrings, type
+annotations, etc.
 
 ## Release
 
 > Review changes with peers and subject matter experts before
 > delivering finished work.
 
-Further limit the main branch to what's currently in production.
 Standardize rolling out changes to live systems from feature branches
-following a formal code review.  Use the commit history to implement
-Semantic Versioning with automated change reporting.  Simplify
-reviews, rollbacks, and reporting by curating a linear commit history.
+following a formal code review.  Curate a linear commit history to
+simplify debugging, merging, and reviewing changes.  Further simplify
+code reviews by running linters and test suites automatically via
+CI/CD pipelines.  Use the commit history to implement Semantic
+Versioning with automated change reporting.
 
 ## Build
 
 > Assemble service packages and perform end-to-end testing.
 
-Move container image definitions from Docker Compose projects into
+Store container image definitions from Docker Compose projects into
 dedicated repositories.  Re-run end-to-end tests before publishing
 container images, and store test results in an immutable audit log.
 Pin dependencies to ensure reproducible builds.  Maintain product
@@ -91,14 +93,14 @@ feasible, and publish them in tandem.
 Track---and later, distribute---changes to device, server, and
 application configurations using Git.  Script simpler service
 installations and routine maintenance like certificate renewals.
-Orchestrate cloud infrastructure deployments with Docker Compose,
-OpenTofu, Helm, and Kubernetes operators.
+Orchestrate cloud infrastructure deployments with Ansible, Docker
+Compose, OpenTofu, Helm, and Kubernetes operators.
 
 ## Operate
 
 > Re-use safe end-to-end tests to monitor the service's health.
 
-Monitor real service functioning in addition to external reachability
+Monitor service functioning in addition to external reachability
 checks and performance counters.
 
 ## Feedback
