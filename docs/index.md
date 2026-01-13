@@ -103,8 +103,8 @@ product packaging.
 :link: deploy/index
 :link-type: doc
 
-Shift right with rolling releases that deploy validated capability and
-fixes at the speed of need.
+Shift right with rolling releases that deploy (or update) accredited,
+validated capability at the speed of need.
 
 +++
 [Learn more »](deploy/index)
@@ -160,20 +160,21 @@ This document is written using
 [MyST Markdown](https://myst-parser.readthedocs.io/), a strict
 superset of the
 [CommonMark syntax specification](https://spec.commonmark.org/) that
-adds features focussed on scientific and technical documentation
-authoring.  It is specifically designed to be readable across multiple
-devices in a variety of formats without requiring an online Internet
-connection.  Collaborative editing and publishing follows the same
-process described herein.
+adds features focused on scientific and technical documentation
+authoring.  Markdown is specifically designed to be readable across
+multiple devices in a variety of formats without requiring an online
+Internet connection.  Collaborative editing and publishing follows the
+same process described herein.
 
 ## Structure
 
-This document is currently arranged into three major sections.  The
-frontmatter contains document-specific esoterica including strategic
-plans, blueprints for adoption, and training materials.  The main body
-of the work provides guidance covering project management, version
-control, continuous integration, and continuous delivery.  Appendices
-include supplementary---but still authoritative---material.
+This document contains three major sections.  The frontmatter
+describes the RDCT Engineering team's DevOps strategy and links to
+relevant third-party training.  The main body of the work provides
+instructions covering project management, version control, continuous
+integration, and continuous delivery.  Appendices include
+supplementary---but still authoritative---guidance for specific tool
+chains.
 
 ```{toctree}
 :hidden:
