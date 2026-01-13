@@ -125,7 +125,8 @@ Sentences using these key words appear in block quotes, like above.
 An explanation of the rationale for the rule plus supporting material
 appears after in separate paragraphs, like this.  Usually, each rule
 falls under its own heading, which facilitates direct links to
-authoritative guidance.
+authoritative guidance.  Top-level headings provide a content summary
+or a quick reference.
 
 ## Scope
 
