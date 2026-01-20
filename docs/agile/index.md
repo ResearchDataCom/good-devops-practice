@@ -27,7 +27,7 @@ service operation cease.
 :hidden:
 
 charter
-standup
-sprints
 backlog
+sprints
+kanban
 ```
