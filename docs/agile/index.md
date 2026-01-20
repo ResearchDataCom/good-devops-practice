@@ -1,7 +1,27 @@
 # Project Management
 
-Manage projects using Agile methodologies, including Kanban, Scrum,
-and SAFe.
+{attribution="[Principles behind the Agile Manifesto](https://agilemanifesto.org/principles.html)"}
+> Our highest priority is to satisfy the customer through early and
+> continuous delivery of valuable software.
+
+Agile project management methodologies, including
+[Kanban](wiki:Kanban_(development)),
+[Scrum](wiki:Scrum_(software_development)), and
+[SAFe](wiki:Scaled_Agile_Framework), target complex products or
+services with indeterminate requirements.
+
+:::{figure} ../_static/project-management.svg
+:align: center
+
+The Project Life Cycle
+
+Cadenced agile ceremonies work like a reduction drive---represented
+here using belts---with annual contract awards propelling quarterly
+program increments (SAFe), semi-monthly sprints (scrum), and daily
+tasks (kanban).  Agile projects end only when product development and
+service operation cease.
+
+:::
 
 ```{toctree}
 :hidden:
