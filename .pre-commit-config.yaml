@@ -3,8 +3,6 @@
 # tool-specific exclusions; cf. https://stackoverflow.com/a/75560858.
 exclude: |-
   (?x)^(
-      .external_modules.*|
-      .terraform.*|
       build.*|
       dist.*
   )$

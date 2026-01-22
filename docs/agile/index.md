@@ -7,8 +7,10 @@
 Agile project management methodologies, including
 [Kanban](wiki:Kanban_(development)),
 [Scrum](wiki:Scrum_(software_development)), and
-[SAFe](wiki:Scaled_Agile_Framework), target complex products or
-services with indeterminate requirements.
+[SAFe](wiki:Scaled_Agile_Framework), facilitate the incremental
+delivery of complex products or services with indeterminate (or
+changing) requirements by shortening and interleaving enterprise
+performance life cycle phases.
 
 :::{figure} ../_static/project-management.svg
 :align: center
@@ -16,10 +18,10 @@ services with indeterminate requirements.
 The Project Life Cycle
 
 Cadenced agile ceremonies work like a reduction drive---represented
-here using belts---with annual contract awards propelling quarterly
-program increments (SAFe), semi-monthly sprints (scrum), and daily
-tasks (kanban).  Agile projects end only when product development and
-service operation cease.
+here using belts---with annual contract awards or strategic plans
+propelling quarterly program increments (SAFe), semi-monthly sprints
+(scrum), and daily tasks (kanban).  Agile projects end only when
+product development and service operation cease.
 
 :::
 

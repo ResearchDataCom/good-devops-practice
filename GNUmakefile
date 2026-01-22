@@ -42,7 +42,6 @@ DEBIAN_BUILD_DEPS = \
 	devscripts \
 	equivs \
 	python3.13-full \
-	xmlsec1 \
 
 # On Debian/Ubuntu, install these Python packages' build dependencies.
 APT_GET_INSTALL = \
@@ -59,7 +58,6 @@ MACPORTS_BUILD_DEPS = \
 	libffi \
 	py313-cairosvg \
 	shellcheck \
-	tflint \
 
 # Get the package name.
 PYPACKAGE_NAME = \
