@@ -28,8 +28,8 @@ product development and service operation cease.
 ```{toctree}
 :hidden:
 
+kanban
 charter
 backlog
 sprints
-kanban
 ```
