@@ -7,8 +7,12 @@ in unencrypted files, even when using full-disk encryption.
 
 ## Recommended Software
 
-> Developers **SHOULD** use the latest versions of the listed tools to
-> track code changes.
+:::{admonition} Guidance
+
+Developers **SHOULD** use the latest versions of the listed tools to
+track code changes.
+
+:::
 
 - [Git](https://git-scm.com/), the free and open source distributed
   version control system
@@ -34,17 +38,25 @@ subject to company or client approval, use complementary tools such as
 
 ## Multiple GitHub Accounts
 
-> Developers **MUST** maintain separate personal and work
-> [GitHub.com accounts](https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts).
+:::{admonition} Guidance
+
+Developers **MUST** maintain separate personal and work
+[GitHub.com accounts](https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts).
+
+:::
 
 GitHub does not provide mechanisms for controlling which SSH keys or
 access tokens to can be used to access organizations' private
 repositories.
 
-> Developers **MUST** store work-related account information and
-> keying material in company- or client-provided credential vaulting
-> systems (e.g., a 1Password Business account) or hardware
-> authentication devices (e.g., a PIV card, a YubiKey).
+:::{admonition} Guidance
+
+Developers **MUST** store work-related account information and keying
+material in company- or client-provided credential vaulting systems
+(e.g., a 1Password Business account) or hardware authentication
+devices (e.g., a PIV card, a YubiKey).
+
+:::
 
 Storing plaintext keying material on a computer's file system risks a
 company or client security breach should the computer be compromised
@@ -52,9 +64,13 @@ by a malicious third party.  Malware running as the developer can
 access that data even if the underlying file system uses full-disk
 encryption.
 
-> Developers **MUST NOT** store work-related account information,
-> credentials, and keying material on personal equipment, in personal
-> password managers, and the like.
+:::{admonition} Guidance
+
+Developers **MUST NOT** store work-related account information,
+credentials, and keying material on personal equipment, in personal
+password managers, and the like.
+
+:::
 
 Using personal equipment for work risks a company or a client security
 breach.  Developers are not authorized to take those risks on the
@@ -62,8 +78,12 @@ company's or its clients' behalf.
 
 ## Attributions
 
-> Developers **MUST** use their corporate or client identities when
-> authoring commits.
+:::{admonition} Guidance
+
+Developers **MUST** use their corporate or client identities when
+authoring commits.
+
+:::
 
 Set the email address in the Git client to the company- or
 client-provided email address.  In most cases, the Git user name can
@@ -74,9 +94,13 @@ guidance.  For more information, refer to
 
 ## Digitally Signed Commits
 
-> Developers **SHOULD** sign their commits using industry-standard
-> digital signature methods.  GnuPG with a company- or client-provided
-> hardware authentication device is **RECOMMENDED**.
+:::{admonition} Guidance
+
+Developers **SHOULD** sign their commits using industry-standard
+digital signature methods.  GnuPG with a company- or client-provided
+hardware authentication device is **RECOMMENDED**.
+
+:::
 
 The [_YubiKey-Guide_](https://drduh.github.io/YubiKey-Guide/) provides
 GnuPG configuration guidance along with YubiKey-specific setup
@@ -85,8 +109,12 @@ configuration guidance from the _YubiKey-Guide_ but replace GnuPG's
 scdaemon with
 [gnupg-pkcs11-scd](https://github.com/alonbl/gnupg-pkcs11-scd).
 
-> Developers **MUST NOT** store keying material used to sign commits
-> in unencrypted files.
+:::{admonition} Guidance
+
+Developers **MUST NOT** store keying material used to sign commits in
+unencrypted files.
+
+:::
 
 Storing plaintext keying material on a computer's file system risks a
 company or client security breach should the computer be compromised
@@ -96,11 +124,15 @@ encryption.
 
 ## Remote Server Access
 
-> Developers **MUST** use industry-standard transport-layer encryption
-> methods and multi-factor authentication mechanisms to access Git
-> remote repositories.  SSH with a company- or client-provided
-> hardware authentication device, integrated with the OpenSSH client
-> via GnuPG, is **RECOMMENDED**.
+:::{admonition} Guidance
+
+Developers **MUST** use industry-standard transport-layer encryption
+methods and multi-factor authentication mechanisms to access Git
+remote repositories.  SSH with a company- or client-provided hardware
+authentication device, integrated with the OpenSSH client via GnuPG,
+is **RECOMMENDED**.
+
+:::
 
 Refer to the _YubiKey-Guide_ or the gnupg-pkcs-11 documentation
 referenced above for GnuPG configuration guidance.
@@ -109,8 +141,12 @@ provides general OpenSSH setup instructions.  Answers to
 [this question posted on StackOverflow](https://stackoverflow.com/questions/3225862/multiple-github-accounts-ssh-config)
 explain how to configure OpenSSH to support multiple GitHub accounts.
 
-> Developers **MUST NOT** store credentials used to access Git remote
-> repositories in unencrypted files.
+:::{admonition} Guidance
+
+Developers **MUST NOT** store credentials used to access Git remote
+repositories in unencrypted files.
+
+:::
 
 :::{danger}
 

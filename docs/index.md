@@ -116,17 +116,21 @@ validated capability at the speed of need.
 
 ## Conventions
 
-> The key words **MUST**, **MUST NOT**, **REQUIRED**, **SHALL**,
-> **SHALL NOT**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**, **MAY**,
-> and **OPTIONAL** in this document are to be interpreted as described
-> in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
+:::{admonition} Guidance
 
-Sentences using these key words appear in block quotes, like above.
-An explanation of the rationale for the rule plus supporting material
-appears after in separate paragraphs, like this.  Usually, each rule
-falls under its own heading, which facilitates direct links to
-authoritative guidance.  Top-level headings provide a content summary
-or a quick reference.
+Interpret the key words **MUST**, **MUST NOT**, **REQUIRED**,
+**SHALL**, **SHALL NOT**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**,
+**MAY**, and **OPTIONAL** as described in
+[RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
+
+:::
+
+Authoritative guidance using these key words appear in admonitions
+titled "Guidance", like above.  An explanation of the rationale for
+the rule plus supporting material appears after in separate
+paragraphs, like this.  Usually, each rule falls under its own
+subheading, which facilitates cross-referencing.  Top-level headings
+provide a content summary or a quick reference.
 
 ## Scope
 
@@ -163,8 +167,8 @@ superset of the
 adds features focused on scientific and technical documentation
 authoring.  Markdown is specifically designed to be readable across
 multiple devices in a variety of formats without requiring an online
-Internet connection.  Collaborative editing and publishing follows the
-same process described herein.
+Internet connection.  Formatting, collaborative editing, and
+publishing follows the same standards and practices described herein.
 
 ## Structure
 

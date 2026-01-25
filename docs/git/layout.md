@@ -8,11 +8,15 @@ repository's documentation for further instructions.
 
 ## The Repository Name
 
-> A project under version control **MUST** have a short, unique,
-> descriptive, human-readable identifier.  The repository name **MUST
-> NOT** include a version number.  The repository name **SHOULD NOT**
-> use pronouns, e.g., `my-example-service`, as projects are
-> intrinsically shared works.
+:::{admonition} Guidance
+
+A project under version control **MUST** have a short, unique,
+descriptive, human-readable identifier.  The repository name **MUST
+NOT** include a version number.  The repository name **SHOULD NOT**
+use pronouns, e.g., `my-example-service`, as projects are
+intrinsically shared works.
+
+:::
 
 Write the repository name using unaccented lower case letters and
 dashes in the 7-bit ASCII character encoding.  Avoid characters that
@@ -27,15 +31,23 @@ than if the terms were catenated.
 
 ## The Repository Description
 
-> The repository **MUST** have a clear and concise summary of its
-> function or purpose.
+:::{admonition} Guidance
+
+The repository **MUST** have a clear and concise summary of its
+function or purpose.
+
+:::
 
 Use this summary to describe the authoritative repository.
 
 ## The Main Branch
 
-> The main (or primary) branch of a Git repository **MUST** be called
-> `main`.
+:::{admonition} Guidance
+
+The main (or primary) branch of a Git repository **MUST** be called
+`main`.
+
+:::
 
 If a pre-existing Git repository uses a different name for the main
 branch (e.g., `develop`, `master`), rename it if feasible.  For
@@ -44,9 +56,13 @@ is called `main`.
 
 ## Project Summary
 
-> The repository **MUST** include a top-level
-> [Markdown document](markdown) named `README.md` that gives a brief
-> overview of the project.
+:::{admonition} Guidance
+
+The repository **MUST** include a top-level
+[Markdown document](markdown) named `README.md` that gives a brief
+overview of the project.
+
+:::
 
 The document starts with a level-1 heading containing the repository
 name, an single blank line, and the repository description.  The rest
@@ -55,9 +71,13 @@ deployment guidance.
 
 ## Contribution Guidelines
 
-> The repository **MUST** include a top-level Markdown document named
-> `CONTRIBUTING.md` that summarizes how developers work together on
-> the project.
+:::{admonition} Guidance
+
+The repository **MUST** include a top-level Markdown document named
+`CONTRIBUTING.md` that summarizes how developers work together on the
+project.
+
+:::
 
 This document starts with the level-1 heading `Contribution
 Guidelines`, a single blank line, and a short summary of the project
@@ -71,8 +91,12 @@ engineering process.
 
 ## Development Process Automation
 
-> The repository **SHOULD** include a top-level makefile named
-> `GNUmakefile` that scripts common developer workflows.
+:::{admonition} Guidance
+
+The repository **SHOULD** include a top-level makefile named
+`GNUmakefile` that scripts common developer workflows.
+
+:::
 
 These workflows include development environment setup, linting,
 testing, packaging, and deployment.  Make targets are documented in

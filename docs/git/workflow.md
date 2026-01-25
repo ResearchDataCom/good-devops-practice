@@ -8,8 +8,12 @@ main branch always matches the latest release or live deployment.
 
 ## The Main Branch
 
-> The main branch of a Git repository **MUST** contain only released
-> software versions or live (production) system definitions.
+:::{admonition} Guidance
+
+The main branch of a Git repository **MUST** contain only released
+software versions or live (production) system definitions.
+
+:::
 
 The main branch does not contain work in progress except during
 initial development, prior to the project's initial release or
@@ -17,9 +21,13 @@ deployment.
 
 ## The Head of the Main Branch
 
-> The latest commit (or head) of the main branch of the Git repository
-> **MUST** be the project's latest release or current (active)
-> configuration.
+:::{admonition} Guidance
+
+The latest commit (or head) of the main branch of the Git repository
+**MUST** be the project's latest release or current (active)
+configuration.
+
+:::
 
 For infrastructure-as-code projects, staff should be able to rebuild a
 system from scratch given the head of the main branch of the Git
@@ -28,9 +36,13 @@ parameters, and a recent copy of the system's persistent data storage.
 
 ## Feature Branches
 
-> All changes to published software or live systems **MUST** be
-> developed and tested in branches starting from the then-current head
-> of the main branch of the project's Git repository.
+:::{admonition} Guidance
+
+All changes to published software or live systems **MUST** be
+developed and tested in branches starting from the then-current head
+of the main branch of the project's Git repository.
+
+:::
 
 Limit a feature branch to a single business goal or product feature.
 The branch name succinctly describes the work, e.g., `stepup-mfa`,
@@ -41,9 +53,13 @@ simultaneously.
 
 ## Linear Commit History
 
-> Developers **MUST** maintain the linear commit history of a Git
-> repository as this simplifies code review and facilitates root cause
-> analysis.
+:::{admonition} Guidance
+
+Developers **MUST** maintain the linear commit history of a Git
+repository as this simplifies code review and facilitates root cause
+analysis.
+
+:::
 
 Always use the `--ff-only` option to the `git merge` and `git fetch`
 commands.  Likewise, always use `--rebase` option to the `git pull`
@@ -52,9 +68,12 @@ configuration.
 
 ## Creating a Feature Branch
 
-> Before creating a new feature branch, developers **MUST**
-> synchronize the main branch with the authoritative
-> repository[^origin].
+:::{admonition} Guidance
+
+Before creating a new feature branch, developers **MUST** synchronize
+the main branch with the authoritative repository[^origin].
+
+:::
 
 [^origin]: By default, clones of the authoritative repository call it
     the `origin`
@@ -67,8 +86,12 @@ git checkout main
 git pull --rebase origin main
 ```
 
-> Developers **MUST** create a new feature branch in both the local
-> Git repository and the authoritative repository.
+:::{admonition} Guidance
+
+Developers **MUST** create a new feature branch in both the local Git
+repository and the authoritative repository.
+
+:::
 
 This configures remote tracking at the same time.
 
@@ -79,9 +102,13 @@ git push origin new-feature
 
 ## Moving Work in Progress to a Feature Branch
 
-> If work in progress was mistakenly committed to the main branch and
-> pushed to the authoritative repository, developers **MUST** contact
-> their functional or task area lead for tailored instructions.
+:::{admonition} Guidance
+
+If work in progress was mistakenly committed to the main branch and
+pushed to the authoritative repository, developers **MUST** contact
+their functional or task area lead for tailored instructions.
+
+:::
 
 However, if work in progress was mistakenly committed to the main
 branch but not yet pushed to the authoritative repository, move the
@@ -131,9 +158,13 @@ git stash pop
 
 ## Updating a Feature Branch
 
-> Merge commits **MUST NOT** be used as they can hide risky code
-> changes.  Squash commits **SHOULD NOT** be used, either, as they
-> discard historical context useful during root cause analysis.
+:::{admonition} Guidance
+
+Merge commits **MUST NOT** be used as they can hide risky code
+changes.  Squash commits **SHOULD NOT** be used, either, as they
+discard historical context useful during root cause analysis.
+
+:::
 
 Because Git supports work occurring simultaneously in the same branch
 of multiple clones of a repository, the original head of a feature
@@ -162,10 +193,13 @@ git push --force-with-lease origin new-feature
 
 ## Merging a Feature Branch
 
-> Merging a feature branch with the main branch, thereby releasing a
-> new software version or changing a live system, **MUST** be approved
-> by the company's or the client's Change Advisory Board (or
-> equivalent).
+:::{admonition} Guidance
+
+Merging a feature branch with the main branch, thereby releasing a new
+software version or changing a live system, **MUST** be approved by
+the company's or the client's Change Advisory Board (or equivalent).
+
+:::
 
 Ask your functional area or task area lead for specific guidance.
 
@@ -176,9 +210,13 @@ Diverging Branches
 
 :::
 
-> Merge commits **MUST NOT** be used as they can hide risky code
-> changes.  Squash commits **SHOULD NOT** be used, either, as they
-> discard historical context useful during root cause analysis.
+:::{admonition} Guidance
+
+Merge commits **MUST NOT** be used as they can hide risky code
+changes.  Squash commits **SHOULD NOT** be used, either, as they
+discard historical context useful during root cause analysis.
+
+:::
 
 Because Git supports work occurring simultaneously in multiple
 branches of a repository, the starting commit of a feature branch may

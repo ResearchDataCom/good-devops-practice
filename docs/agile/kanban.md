@@ -93,19 +93,27 @@ This work has been delivered to the customer.
 
 ## No Unplanned Work
 
-> All work **MUST** be tracked by [a ticket](wiki:ITIL),
-> [a task](wiki:Task_(project_management)), or
-> [an issue](wiki:Issue_tracking_system), as without some kind of work
-> plan, the team cannot be self-directing.
+:::{admonition} Guidance
+
+All work **MUST** be tracked by [a ticket](wiki:ITIL),
+[a task](wiki:Task_(project_management)), or
+[an issue](wiki:Issue_tracking_system), as without some kind of work
+plan, the team cannot be self-directing.
+
+:::
 
 Which service management, project management, or issue tracking tool
 the team uses depends on the customer.
 
 ## The Daily Stand-up Meeting
 
-> Daily stand-up meeting attendance is **REQUIRED**.  Any attendee
-> **MAY** run the meeting.  Everyone in attendance **MUST** help write
-> the meeting minutes.
+:::{admonition} Guidance
+
+Daily stand-up meeting attendance is **REQUIRED**.  Any attendee
+**MAY** run the meeting.  Everyone in attendance **MUST** help write
+the meeting minutes.
+
+:::
 
 The team meets briefly each morning:
 

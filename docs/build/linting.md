@@ -14,8 +14,12 @@ suspicious constructs in source code.
 
 ## Recommended Software
 
-> Developers **SHOULD** use the latest versions of the listed tools to
-> format code and perform static code analysis.
+:::{admonition} Guidance
+
+Developers **SHOULD** use the latest versions of the listed tools to
+format code and perform static code analysis.
+
+:::
 
 - [pre-commit](https://precommit.com/), a multi-language pre-commit
   hook management framework

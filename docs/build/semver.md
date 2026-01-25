@@ -1,5 +1,7 @@
 # Semantic Versioning
 
+:::{admonition} Guidance
+
 All projects **MUST** implement
 [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html) using
 [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/).
@@ -12,6 +14,8 @@ Fixes only increment the patch version number.  Commit types other
 than `feat` or `fix` **SHOULD NOT** increment the version number.
 Version number calculations **SHOULD** be automated.  Refer to
 [Release Engineering](releng) for further guidance.
+
+:::
 
 :::{table} Commit History Drives Version Numbering
 :align: center
@@ -26,10 +30,15 @@ Version number calculations **SHOULD** be automated.  Refer to
 
 ## The Starting Version Number, the First Commit, and the Initial Release
 
+:::{admonition} Guidance
+
 A project **MUST** start at version `0.0.0`, and the first commit
 **MUST** be categorized as a new feature introducing a breaking
 change---the developer's first attempt at solving whatever problem
-initiated the project.  Further development prior to the initial
-release can include additional breaking changes, new features, or
-fixes, which naturally leads to the initial release being version
-`1.0.0`.
+initiated the project.
+
+:::
+
+Further development prior to the initial release can include
+additional breaking changes, new features, or fixes, which naturally
+leads to the initial release being version `1.0.0`.

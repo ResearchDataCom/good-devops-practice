@@ -2,9 +2,13 @@
 
 ## Effort Estimation
 
-> Scrum masters **SHOULD** estimate each user story's
-> [level of effort](wiki:level_of_effort), with one (1) story point
-> being roughly equivalent to one (1) [work day](wiki:man-hour).
+:::{admonition} Guidance
+
+Scrum masters **SHOULD** estimate each user story's
+[level of effort](wiki:level_of_effort), with one (1) story point
+being roughly equivalent to one (1) [work day](wiki:man-hour).
+
+:::
 
 Level-of-effort estimates scale following the
 [Fibonacci sequence](wiki:Fibonacci_sequence), with thirteen (13)
