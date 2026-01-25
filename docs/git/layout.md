@@ -134,3 +134,18 @@ The repository **SHOULD** include a top-level makefile named
 These workflows include development environment setup, linting,
 testing, packaging, and deployment.  Document targets in the
 [detailed contribution guidelines](#detailed-contribution-guidelines).
+
+## Intentionally Untracked Files
+
+:::{admonition} Guidance
+
+A Git repository **MUST NOT** contain junk data, including log files,
+temporary files, build/debug artifacts, or personal files.
+
+:::
+
+A [`.gitignore`](https://git-scm.com/docs/gitignore) file helps
+prevent
+[mistakenly committing junk data](https://stackoverflow.com/a/13675249).
+For ideas on what to exclude, refer to
+[GitHub's collection of `.gitignore` templates](https://github.com/github/gitignore).

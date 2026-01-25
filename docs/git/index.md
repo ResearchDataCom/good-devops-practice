@@ -9,7 +9,6 @@ version control system.
 
 config
 layout
-gitignore
 atomic
 conventional
 workflow
