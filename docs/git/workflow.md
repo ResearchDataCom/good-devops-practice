@@ -1,10 +1,25 @@
 # Feature Branch Workflow
 
-Developers **MUST** follow the feature branch workflow, which
-encapsulates development work in dedicated, temporary branches of a
-Git repository.  The main branch of the repository only contains
+Encapsulate development work in dedicated, temporary branches of a Git
+repository.  The main branch of the repository only contains
 known-good source code or configuration files, and the head of the
 main branch always matches the latest release or live deployment.
+
+## Linear Commit History
+
+:::{admonition} Guidance
+
+Developers **MUST** maintain the linear commit history of a Git
+repository as this simplifies code review and facilitates root cause
+analysis.  Merge commits **MUST NOT** be used as they can hide risky
+code changes.  Squash commits **SHOULD NOT** be used, either, as they
+discard historical context useful during root cause analysis.
+
+:::
+
+Always use the `--ff-only` option to the `git merge` and `git fetch`
+commands.  Likewise, always use `--rebase` option to the `git pull`
+command, or set `pull.rebase` to `true` in the Git configuration.
 
 ## The Main Branch
 
@@ -29,73 +44,38 @@ configuration.
 
 :::
 
-For infrastructure-as-code projects, staff should be able to rebuild a
-system from scratch given the head of the main branch of the Git
-repository, the system's secrets or other runtime configuration
-parameters, and a recent copy of the system's persistent data storage.
+For infrastructure-as-code projects, staff should be able to redeploy
+a service from scratch given the head of the main branch of the Git
+repository, the service's secrets and other runtime configuration
+parameters, and a recent copy of the service's persistent data
+storage.
 
 ## Feature Branches
 
 :::{admonition} Guidance
 
-All changes to published software or live systems **MUST** be
+All changes to published software or live services **MUST** be
 developed and tested in branches starting from the then-current head
 of the main branch of the project's Git repository.
 
 :::
 
-Limit a feature branch to a single business goal or product feature.
+Limit a feature branch to a single [deliverable](wiki:deliverable).
 The branch name succinctly describes the work, e.g., `stepup-mfa`,
-`mfa-enforcement-fixes`.
-
-Note that Git supports multiple feature branches being worked
-simultaneously.
-
-## Linear Commit History
-
-:::{admonition} Guidance
-
-Developers **MUST** maintain the linear commit history of a Git
-repository as this simplifies code review and facilitates root cause
-analysis.
-
-:::
-
-Always use the `--ff-only` option to the `git merge` and `git fetch`
-commands.  Likewise, always use `--rebase` option to the `git pull`
-command, or set `pull.rebase` to `true` in the Git global
-configuration.
-
-## Creating a Feature Branch
-
-:::{admonition} Guidance
-
-Before creating a new feature branch, developers **MUST** synchronize
-the main branch with the authoritative repository[^origin].
-
-:::
+`mfa-enforcement-fixes`.  Git supports multiple feature branches being
+worked simultaneously.  To reduce the likelihood of a merge conflict
+synchronize the main branch with the authoritative repository[^origin]
+before creating a new feature branch, and configure
+[remote tracking](https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches)
+immediately after:
 
 [^origin]: By default, clones of the authoritative repository call it
     the `origin`
     [remote repository](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes).
 
-This reduces the likelihood of a merge conflict.
-
 ```sh
 git checkout main
 git pull --rebase origin main
-```
-
-:::{admonition} Guidance
-
-Developers **MUST** create a new feature branch in both the local Git
-repository and the authoritative repository.
-
-:::
-
-This configures remote tracking at the same time.
-
-```sh
 git checkout -b new-feature
 git push origin new-feature
 ```
@@ -104,14 +84,15 @@ git push origin new-feature
 
 :::{admonition} Guidance
 
-If work in progress was mistakenly committed to the main branch and
-pushed to the authoritative repository, developers **MUST** contact
-their functional or task area lead for tailored instructions.
+If work in progress was mistakenly pushed to the main branch of the
+authoritative repository, the functional or task area lead **MUST** be
+notified within one (1) hour.  No further action **SHALL** be taken
+except at their direction.
 
 :::
 
-However, if work in progress was mistakenly committed to the main
-branch but not yet pushed to the authoritative repository, move the
+If instead the work in progress was mistakenly committed to the main
+branch but _not yet_ pushed to the authoritative repository, move the
 work in progress to a feature branch:
 
 1. Record the state of the working directory, preserving any new work
@@ -130,18 +111,17 @@ git checkout -b new-feature
 
 3. Reset the main branch.  In the commands shown below, change
    `original-head` to a revision parameter specifying the latest
-   version or production configuration approved by the IBRSP CAB.  The
-   revision parameter could be a tag like `v1.1.0`, a symbolic
-   reference like `HEAD~3`, or a commit object like `a1b2c3d4`.  For
-   more information, refer to
-   ["Specifying Revisions"](https://git-scm.com/docs/git-rev-parse).
+   approved release or configuration.  The revision parameter could be
+   a tag like `v1.1.0`, a symbolic reference like `HEAD~3`, or a
+   commit object like `a1b2c3d4`.  For more information, refer to
+   ["Specifying Revisions" in the `git rev-parse` command documentation](https://git-scm.com/docs/git-rev-parse).
 
 ```sh
 git checkout main
 git reset --hard original-head
 ```
 
-4. Switch back to the new feature branch, and create it in the
+4. Switch back to the new feature branch, and upload it to the
    authoritative repository.
 
 ```sh
@@ -162,7 +142,8 @@ git stash pop
 
 Merge commits **MUST NOT** be used as they can hide risky code
 changes.  Squash commits **SHOULD NOT** be used, either, as they
-discard historical context useful during root cause analysis.
+discard historical context useful during
+[root-cause analysis](wiki:Root-cause_analysis).
 
 :::
 
@@ -174,18 +155,21 @@ branch without accounting for recent changes to the remote-tracking
 branch would effectively delete other developers' work from the Git
 repository.  By default, Git will handle this situation by creating a
 merge commit and prompting the user to fix any conflicts (when the
-same file was modified in both branches).  Instead, rebase the feature
-branch on the head of the remote-tracking branch prior to merging to
-preserve the linear commit history of the Git repository:
+same file was modified in both branches).
 
-1. Synchronize the feature branch with the remote tracking branch.
+Instead, rebase the feature branch on the head of the remote-tracking
+branch prior to merging to preserve the linear commit history of the
+Git repository:
+
+1. Synchronize the feature branch with the remote-tracking branch.
 
 ```sh
 git pull --rebase origin new-feature
 ```
 
-2. [Address any merge conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
-   before updating the remote-tracking branch.
+2. [Address any merge conflicts.](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
+
+3. Update the remote-tracking branch.
 
 ```sh
 git push --force-with-lease origin new-feature
@@ -196,25 +180,8 @@ git push --force-with-lease origin new-feature
 :::{admonition} Guidance
 
 Merging a feature branch with the main branch, thereby releasing a new
-software version or changing a live system, **MUST** be approved by
-the company's or the client's Change Advisory Board (or equivalent).
-
-:::
-
-Ask your functional area or task area lead for specific guidance.
-
-:::{figure} ../_static/diverging-branches.svg
-:align: center
-
-Diverging Branches
-
-:::
-
-:::{admonition} Guidance
-
-Merge commits **MUST NOT** be used as they can hide risky code
-changes.  Squash commits **SHOULD NOT** be used, either, as they
-discard historical context useful during root cause analysis.
+software version or changing a live service's configuration, **MUST**
+be approved by the Change Advisory Board.
 
 :::
 
@@ -225,9 +192,11 @@ feature branch without accounting for recent changes to the main
 branch would effectively delete delivered code or approved changes
 from the Git repository.  By default, Git will handle this situation
 by creating a merge commit and prompting the user to fix any conflicts
-(when the same file was modified in both branches).  Instead, rebase
-the feature branch on the head of the main branch prior to merging to
-preserve the linear commit history of the Git repository:
+(when the same file was modified in both branches).
+
+Instead, rebase the feature branch on the head of the main branch
+prior to merging to preserve the linear commit history of the Git
+repository:
 
 1. Synchronize the main branch with the authoritative repository.
 
@@ -250,26 +219,27 @@ git pull --rebase origin new-feature
 git rebase main
 ```
 
-4. [Address any merge conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
-   before updating the remote-tracking branch.
+4. [Address any merge conflicts.](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
+
+5. Update the remote-tracking branch.
 
 ```sh
 git push --force-with-lease origin new-feature
 ```
 
-5. Remove merged feature branches from the authoritative repository.
+6. Prune the merged feature branch.
 
 ```sh
 git branch --delete new-feature
 git push --delete origin new-feature
 ```
 
-6. Tag the new head of the main branch with the new version number.
+7. Tag the new head of the main branch with the new version number.
    This process may be automatic.  For more information, refer to
-   [Release Engineering](../releng/index).
+   [Continuous Integration](../build/index).
 
-7. Update the main branch and release tags, and remove merged feature
-   branches.
+8. In clones of the authoritative repository, update the main branch
+   and release tags, and prune merged feature branches.
 
 ```sh
 git checkout main
