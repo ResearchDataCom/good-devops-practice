@@ -11,11 +11,14 @@ for additional guidance.
 
 > Why do this work?  What challenges do we face?
 
-- outsiders want to know how we work
-
-- insiders need a clue, too
-
-- release features, deploy capability at the speed of need
+Several clients require documented software development life cycle
+(SDLC) or enterprise performance life cycle (EPLC) processes,
+sometimes due to regulations such as
+[FISMA](https://www.govinfo.gov/link/plaw/113/public/283).
+Additionally, staff members sometimes lack experience with modern site
+reliability engineering techniques and tooling, requiring on-the-job
+training.  The RDCT Engineering team needs better ways to share
+knowledge than samizdat.
 
 ## Objectives
 
@@ -30,6 +33,10 @@ TODO: refactor this as learning objectives
 ## Success Criteria
 
 > What effects or outcomes should this project have?
+
+Following secure software development practices should help reduce
+defects---or help reduce the impact of defects---in the company's
+products or services:
 
 - high-quality, well documented, safe software products
 
@@ -53,12 +60,17 @@ TODO: refactor this as learning objectives
 
 > What might make the project exceed a constraint or alter a priority?
 
-- creating a publication processes that supports versioning and
-  translations
+We don't know how to create a publication processes that supports
+versioning and translations.
 
-- outputting documents in the desired format
+Several clients require a specific format for documentation, but
+supporting those output formats may be difficult in terms of developer
+time/effort.
 
-- authoring/editing content
+Not everyone on the team is equally proficient in formal (or
+technical) English writing, which complicates authoring and editing.
+Composing documentation in Microsoft Word, Google Docs, or Apple Pages
+might mitigate some of this.
 
 ## Stakeholders
 
