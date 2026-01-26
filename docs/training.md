@@ -17,6 +17,7 @@ infrastructure in clinical research settings.
 - [DevOps with Kubernetes](https://devopswithkubernetes.com/)
 - [Test-Driven Development](https://tdd.mooc.fi/)
 - [Deep Dive into Modern Web Development](https://fullstackopen.com/)
+- [Georgia Tech Online Master of Science in Computer Science (OMSCS) Open Courseware](https://sites.gatech.edu/omscsopencourseware/)
 
 ## Project Management
 
