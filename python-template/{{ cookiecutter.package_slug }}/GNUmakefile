@@ -311,7 +311,7 @@ docsclean:
 	rm -rf docs/apidocs build/{docs,gettext,html} build/versions*
 
 # Build the distribution.
-dist: .coverage
+dist: | $(PYPACKAGE_NAME).egg-info
 	. .venv/bin/activate; python -m build
 	$(TWINE) check dist/*
 

@@ -1,6 +1,7 @@
-# Ignore temporary files/folders, but note that this doesn't always
-# work.  Check each linter's documentation for any required
-# tool-specific exclusions; cf. https://stackoverflow.com/a/75560858.
+# Ignore temporary files/folders and cookiecutter templates (which
+# deliberately fail linting), but note that this doesn't always work.
+# Check each linter's documentation for any required tool-specific
+# exclusions; cf. https://stackoverflow.com/a/75560858.
 exclude: |-
   (?x)^(
       build.*|
@@ -9,21 +10,22 @@ exclude: |-
   )$
 
 repos:
-  # Ensure commit messages use Conventional Commits formatting;
-  # see also .commitlintrc.js.
-  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.23.0
-    hooks:
-      - id: commitlint
-        stages: [commit-msg]
-        additional_dependencies: ["@commitlint/config-conventional"]
-
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
+
+  # Ensure commit messages use Conventional Commits formatting;
+  # cf. pyproject.toml.
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.13.9
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+      - id: commitizen-branch
+        stages: [pre-push]
 
   # Check shell scripts, limiting output to errors and warnings.
   - repo: https://github.com/koalaman/shellcheck-precommit
@@ -34,7 +36,7 @@ repos:
 
   # Check GitHub Actions workflows.
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.8
+    rev: v1.7.11
     hooks:
       - id: actionlint
 
@@ -58,12 +60,12 @@ repos:
 
   # Sort Python imports.
   - repo: https://github.com/pycqa/isort
-    rev: 7.0.0
+    rev: 8.0.1
     hooks:
       - id: isort
 
   # Reformat Python code after sorting imports.
   - repo: https://github.com/psf/black
-    rev: 25.9.0
+    rev: 26.3.1
     hooks:
       - id: black

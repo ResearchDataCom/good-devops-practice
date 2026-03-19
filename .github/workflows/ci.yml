@@ -8,239 +8,30 @@ on:
   push:
   pull_request:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 permissions: read-all
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      # Check out the repository as of this commit and cache the
-      # working directory for use in other jobs or for re-use if
-      # re-running the workflow (e.g., something outside of GitHub
-      # Actions broke).
-      - id: cache-workdir
-        uses: actions/cache@v4
-        with:
-          key: workdir-${{ github.sha }}
-          path: .
-
-      # Python Semantic Release needs the history of all branches/tags
-      # to calculate the next version number and build the change log.
-      - if: steps.cache-workdir.outputs.cache-hit != 'true'
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      # Fingerprint the source code.  Use this identifier instead of
-      # the commit ID to prevent non-code changes from altering
-      # builds.
-      - id: hash-source-code
-        run: make hash-source-code >> "$GITHUB_OUTPUT"
-        shell: bash
-    outputs:
-      source-hash: ${{ steps.hash-source-code.outputs.hash }}
-
-  # Double-check code syntax/style.  This ought to happen in a
-  # pre-commit hook, but not everyone may have that installed.
   lint:
-    needs: setup
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/cache/restore@v4
-        with:
-          key: workdir-${{ github.sha }}
-          path: .
-      # Install linter dependencies here; for example:
-      # - uses: opentofu/setup-opentofu@v1.0.2
-      # - uses: terraform-linters/setup-tflint@v4
-      - uses: pre-commit/action@v3.0.1
-
-  # Make builds reproducible by pinning every dependency as of this
-  # moment.  That way, anyone can re-build this version of the project
-  # later and get the same result without tasking developers with
-  # version pin maintenance.
-  freeze:
-    needs:
-      - setup
-      - lint
-    runs-on: ubuntu-latest
-    steps:
-      # Only do this once.  Testing (the next step) should reveal any
-      # compatibility issues.  Source code changes, such as an updated
-      # version constraint in pyproject.toml, will automatically
-      # invalidate the list of pinned dependencies and trigger its
-      # regeneration since we're keying off the source hash.
-      - id: cache-requirements
-        uses: actions/cache@v4
-        with:
-          key: requirements-${{ needs.setup.outputs.source-hash }}
-          lookup-only: true
-          path: requirements.txt
-      - if: steps.cache-requirements.outputs.cache-hit != 'true'
-        uses: actions/cache/restore@v4
-        with:
-          key: workdir-${{ github.sha }}
-          path: .
-      # Use the oldest supported version of Python when generating
-      # dependency pins to catch forward compatibility issues.
-      - if: steps.cache-requirements.outputs.cache-hit != 'true'
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: pip
-      - if: steps.cache-requirements.outputs.cache-hit != 'true'
-        id: setup-pip-tools
-        run: pip install pip-tools
-      - if: steps.cache-requirements.outputs.cache-hit != 'true'
-        id: freeze-deps
-        run: pip-compile -o requirements.txt pyproject.toml
+      - uses: ResearchDataCom/releng/python-lint@main
 
   release:
+    # Prevent race conditions of more than one release job in case of
+    # multiple pushes to the main branch in a short period of time.
+    concurrency:
+      group: ${{ github.workflow }}-release-${{ github.ref_name }}
+      cancel-in-progress: false
     needs:
-      - setup
-      - freeze
-    runs-on: ubuntu-latest
+      - lint
+    if: github.ref == 'refs/heads/main'
     permissions:
-      # Allow this job to log into GitHub and thereby update its
-      # permissions.  (Think of this like adding someone to
-      # `sudoers`.)
-      id-token: write
-
-      # Give the job permission to update the change log and to tag
-      # the release via Python Semantic Release.
       contents: write
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/cache/restore@v4
-        with:
-          key: requirements-${{ needs.setup.outputs.source-hash }}
-          path: requirements.txt
-      - uses: actions/cache/restore@v4
-        with:
-          key: workdir-${{ github.sha }}
-          path: .
       - id: release
-        if: github.ref == 'refs/heads/main'
-        uses: python-semantic-release/python-semantic-release@v8.3.0
+        uses: ResearchDataCom/releng/cz-bump@main
+      - if: steps.release.outputs.released
+        uses: ResearchDataCom/releng/publish-github@main
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/cache/save@v4
-        with:
-          key: release-${{ github.sha }}
-          path: .
-    outputs:
-      # The build process might download and run third-party code, so
-      # pass the now release-ready source code to an unprivileged job.
-      released: ${{ steps.release.outputs.released }}
-      tag: ${{ steps.release.outputs.tag }}
-
-  # Generate hypertext and print media from the new release or from
-  # the work in progress.  That means this job **MUST** run after the
-  # release job.  However, skipping the release job on feature
-  # branches would result in this job being skipped, too, and GitHub
-  # Actions does not support conditional prerequisite jobs.  Work
-  # around this by overriding the prerequisite job status checks;
-  # cf. https://stackoverflow.com/a/69252812.
-  docs:
-    needs:
-      - setup
-      - freeze
-      - release
-    if: ${{
-      !cancelled()
-      && ((github.ref_name != 'main' && needs.freeze.result == 'success')
-          || (github.ref_name == 'main' && needs.release.result == 'success'))
-      }}
-    runs-on: ubuntu-latest
-    steps:
-      # On feature branches, build documentation from source code.
-      - if: github.ref_name != 'main'
-        uses: actions/cache/restore@v4
-        with:
-          key: requirements-${{ needs.setup.outputs.source-hash }}
-          path: requirements.txt
-      - if: github.ref_name != 'main'
-        uses: actions/cache/restore@v4
-        with:
-          key: workdir-${{ github.sha }}
-          path: .
-      # On the main branch, build documentation from the release so it
-      # gets the new version number.
-      - if: github.ref_name == 'main'
-        uses: actions/cache/restore@v4
-        with:
-          key: release-${{ github.sha }}
-          path: .
-      # Use the oldest supported version of Python when generating
-      # documentation to catch forward compatibility issues.  Keep
-      # this in sync with the lint and freeze jobs;
-      # cf. https://devguide.python.org/versions/.
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: pip
-      - run: make docs
-      # The document generation process could run malicious
-      # third-party code in a supply chain attack, so this job doesn't
-      # run with elevated privileges.  Instead, it uploads
-      # documentation into an immutable archive (a GitHub Actions
-      # Artifact) that a subsequent, privileged job will publish.
-      - uses: actions/upload-artifact@v4
-        with:
-          name: doc-artifacts
-          path: build/docs/
-          if-no-files-found: error
-          overwrite: true
-
-  # Publish hypertext media using GitHub Pages.
-  gh-pages:
-    needs: docs
-    runs-on: ubuntu-latest
-    permissions:
-      # Allow this job to push web content to the gh-pages branch.
-      contents: write
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: doc-artifacts
-          path: build/docs/
-          merge-multiple: true
-      - uses: peaceiris/actions-gh-pages@v4
-        with:
-          publish_dir: build/docs/
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-  # Publish the release on GitHub.
-  github:
-    needs:
-      - release
-      - docs
-    if: needs.release.outputs.released == 'true'
-    runs-on: ubuntu-latest
-    permissions:
-      # Allow this job to log into GitHub and thereby update its
-      # permissions.
-      id-token: write
-
-      # Give the job permission to create a release on GitHub.
-      contents: write
-    steps:
-      - uses: actions/cache/restore@v4
-        with:
-          key: release-${{ github.sha }}
-          path: .
-      - uses: actions/download-artifact@v4
-        with:
-          name: doc-artifacts
-          path: build/
-          merge-multiple: true
-      # Third parties should be able to rebuild the project for
-      # verification purposes.
-      - run: cp requirements*.txt dist/
-      - uses: python-semantic-release/upload-to-gh-release@main
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ needs.release.outputs.tag }}
+          tag: ${{ steps.release.outputs.tag }}
