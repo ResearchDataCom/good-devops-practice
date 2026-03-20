@@ -22,8 +22,6 @@ repos:
     hooks:
       - id: commitizen
         stages: [commit-msg]
-      - id: commitizen-branch
-        stages: [pre-push]
 
   # Check shell scripts, limiting output to errors and warnings.
   - repo: https://github.com/koalaman/shellcheck-precommit
