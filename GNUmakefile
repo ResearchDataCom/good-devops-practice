@@ -78,7 +78,7 @@ SPHINXOPTS ?=
 PRE_COMMIT_HOOKS = \
 $(addprefix .git/hooks/, \
 	$(shell \
-		$(YQ) -r ".repos[].hooks[].stages[]" .pre-commit-config.yaml \
+		$(YQ) -r ".repos[].hooks[].stages | .[]?" .pre-commit-config.yaml \
 			2>/dev/null \
 		| sort -u \
 	) \
