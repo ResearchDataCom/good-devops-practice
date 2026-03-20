@@ -13,7 +13,8 @@ _signboard_ and inspired by Toyota's lean manufacturing system of the
 [same name](wiki:Kanban), tracks work visually from start to finish.
 Kanban implementations can be as simple as sticky notes on a
 whiteboard.  For example, the following illustrates how Kyle Lewis
-managed a security incident response team using Google Jamboard.
+managed a security incident response team using Google Jamboard, with
+task cards moving from left to right.
 
 ::::::{grid} 3 3 3 3
 :gutter: 1 1 1 2
