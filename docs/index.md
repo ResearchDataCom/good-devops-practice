@@ -33,7 +33,7 @@ development and IT operations discipline enables research at scale.
 
 ````{div} sd-d-flex-row
 
-```{button-ref} roadmap
+```{button-ref} intro
 :ref-type: doc
 :color: primary
 :class: sd-rounded-pill sd-mr-3
@@ -173,22 +173,20 @@ publishing follows the same standards and practices described herein.
 ## Structure
 
 This document contains three major sections.  The frontmatter
-describes the RDCT Engineering team's DevOps strategy and links to
-relevant third-party training.  The main body of the work provides
-instructions covering project management, version control, continuous
-integration, and continuous delivery.  Appendices include
+introduces the RDCT Engineering team's DevOps strategy and outlines
+the [happy path](wiki:Happy_path) for new projects.  The main body of
+the work provides instructions covering project management, version
+control, continuous integration, and continuous delivery as well as
 supplementary---but still authoritative---guidance for specific tool
-chains.
+chains or techniques.  Appendices organize key reference materials.
 
 ```{toctree}
 :hidden:
 
+intro
+roadmap
 charter
 contributing
-credits
-roadmap
-training
-tooling
 ```
 
 ```{toctree}
@@ -199,13 +197,16 @@ agile/index
 git/index
 build/index
 deploy/index
+style/index
+design/index
 ```
 
 ```{toctree}
 :hidden:
 :caption: Appendices
 
-style/index
-design/index
+training
+tooling
 bibliography
+credits
 ```
