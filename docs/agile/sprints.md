@@ -24,7 +24,7 @@ project team can complete a user story in one or two sprints---a
 | Work Amount | Story Points | Equivalent Activities  |
 |-------------|--------------|------------------------|
 | 1 day       | 1 point      | incident, task, commit |
-| 2 weeks     | 13 points    | story                  |
-| 3 months    | 55 points    | feature                |
+| 2 weeks     | 13 points    | story, pull request    |
+| 3 months    | 55 points    | feature, release       |
 
 :::
