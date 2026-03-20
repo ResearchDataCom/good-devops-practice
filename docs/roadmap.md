@@ -37,10 +37,10 @@ Adoption follows the principle of progressive enhancement.
 > Charter the project.  Prioritize the work.  Review bi-weekly.
 
 DevOps is Agile.  Start with a task board and a daily team stand-up
-meeting.  Progress to chartered projects and bi-weekly sprints, which
-requires sprint planning, sprint reviews, and customer delivery
-meetings.  Incorporate program increment planning and other Agile
-project management techniques as needed.
+meeting.  Progress to formally chartered projects and bi-weekly
+sprints, which requires sprint planning, sprint reviews, and customer
+delivery meetings.  Incorporate program increment planning and other
+Agile project management techniques as needed.
 
 ## Test
 
