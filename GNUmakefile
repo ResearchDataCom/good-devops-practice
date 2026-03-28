@@ -54,10 +54,13 @@ MACPORTS_BUILD_DEPS = \
 	act \
 	actionlint \
 	cairo \
+	certsync \
 	jq \
 	libffi \
+	pinact \
 	py313-cairosvg \
 	shellcheck \
+	trivy \
 
 # Get the package name.
 PYPACKAGE_NAME = \

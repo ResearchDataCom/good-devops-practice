@@ -9,6 +9,7 @@
     "docs_url": "{{ cookiecutter.docs_base_url }}/{{ cookiecutter.package_slug }}",
     "repo_url": "{{ cookiecutter.repo_base_url }}/{{ cookiecutter.package_slug }}",
     "_copy_without_render": [
+        ".github/workflows/ci.yml",
         ".gitignore",
         "docs/_templates/*.html"
     ],

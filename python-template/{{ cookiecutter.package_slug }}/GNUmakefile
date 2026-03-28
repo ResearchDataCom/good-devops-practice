@@ -38,28 +38,6 @@ TOMLQ       = $(call venvsearch,tomlq)
 TWINE       = $(call venvsearch,twine)
 YQ          = $(call venvsearch,yq)
 
-# On macOS, install these build dependencies (formulas) via Homebrew.
-HOMEBREW_FORMULA_BUILD_DEPS = \
-	checkov \
-	tofu \
-
-# On macOS, install these build dependencies (casks) via Homebrew.
-HOMEBREW_CASK_BUILD_DEPS = \
-	docker \
-
-# On macOS, install these build dependencies via MacPorts.
-MACPORTS_BUILD_DEPS = \
-	act \
-	actionlint \
-	cairo \
-	jq \
-	libffi \
-	py313-cairosvg \
-	shellcheck \
-	sqlite3 \
-	tflint \
-	xmlsec1 \
-
 # On Debian/Ubuntu, install these build dependencies via APT.
 DEBIAN_BUILD_DEPS = \
 	build-essential \
@@ -76,6 +54,30 @@ apt-get -o Debug::pkgProblemResolver=yes -y --no-install-recommends install
 DEBIAN_SOURCE_DEPS = \
 	python3-cairosvg \
 	postgresql \
+
+# On macOS, install these build dependencies (formulas) via Homebrew.
+HOMEBREW_FORMULA_BUILD_DEPS = \
+	freetds \
+
+# On macOS, install these build dependencies (casks) via Homebrew.
+HOMEBREW_CASK_BUILD_DEPS = \
+	docker \
+
+# On macOS, install these build dependencies via MacPorts.
+MACPORTS_BUILD_DEPS = \
+	act \
+	actionlint \
+	cairo \
+	certsync \
+	jq \
+	libffi \
+	pinact \
+	py313-cairosvg \
+	shellcheck \
+	sqlite3 \
+	tflint \
+	trivy \
+	xmlsec1 \
 
 # Automatically pick a web browser for final integration testing if
 # the required driver is installed.
