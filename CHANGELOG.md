@@ -1,3 +1,10 @@
+## v1.0.1 (2026-03-28)
+
+### Bug Fixes
+
+- **python-template**: move the example unit test module to the correct directory
+- **python-template**: mitigate supply chain attacks by pinning actions to commit objects
+
 ## v1.0.0 (2026-03-20)
 
 ### BREAKING CHANGE
