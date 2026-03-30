@@ -14,11 +14,11 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: ResearchDataCom/releng/pre-commit@3c81afa629c2e31f8d76a3c61222341ce39d2fa5 # v2.0.1
+      - uses: ResearchDataCom/releng/pre-commit@c983346f5a95a52fe5adc01e6bba7708f7286e30 # v2.1.1
         with:
           access-app-id: ${{ vars.PRIVATE_REPOSITORY_ACCESS_APP_ID }}
           access-key: ${{ secrets.PRIVATE_REPOSITORY_ACCESS_KEY }}
-      - uses: ResearchDataCom/releng/python-freeze@3c81afa629c2e31f8d76a3c61222341ce39d2fa5 # v2.0.1
+      - uses: ResearchDataCom/releng/python-freeze@c983346f5a95a52fe5adc01e6bba7708f7286e30 # v2.1.1
 
   test:
     needs:
@@ -30,7 +30,7 @@ jobs:
           - "3.13"
     runs-on: ubuntu-latest
     steps:
-      - uses: ResearchDataCom/releng/python-test@3c81afa629c2e31f8d76a3c61222341ce39d2fa5 # v2.0.1
+      - uses: ResearchDataCom/releng/python-test@c983346f5a95a52fe5adc01e6bba7708f7286e30 # v2.1.1
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: release
-        uses: ResearchDataCom/releng/cz-bump@3c81afa629c2e31f8d76a3c61222341ce39d2fa5 # v2.0.1
+        uses: ResearchDataCom/releng/cz-bump@c983346f5a95a52fe5adc01e6bba7708f7286e30 # v2.1.1
     outputs:
       released: ${{ steps.release.outputs.released }}
       tag: ${{ steps.release.outputs.tag }}
@@ -66,7 +66,7 @@ jobs:
           - "3.13"
     runs-on: ubuntu-latest
     steps:
-      - uses: ResearchDataCom/releng/python-build@3c81afa629c2e31f8d76a3c61222341ce39d2fa5 # v2.0.1
+      - uses: ResearchDataCom/releng/python-build@c983346f5a95a52fe5adc01e6bba7708f7286e30 # v2.1.1
         with:
           artifact-name: python-${{ matrix.python-version }}-build-artifacts
           python-version: ${{ matrix.python-version }}
@@ -82,7 +82,7 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: ResearchDataCom/releng/publish-github@3c81afa629c2e31f8d76a3c61222341ce39d2fa5 # v2.0.1
+      - uses: ResearchDataCom/releng/publish-github@c983346f5a95a52fe5adc01e6bba7708f7286e30 # v2.1.1
         with:
           artifact-paths: requirements.txt,dist/*
           tag: ${{ needs.release.outputs.tag }}
