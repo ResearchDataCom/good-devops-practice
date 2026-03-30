@@ -99,7 +99,6 @@ $(addprefix .git/hooks/, \
 	docs \
 	docsclean \
 	gettext \
-	hash-source-code \
 	html \
 	lint \
 	locale \
@@ -148,7 +147,7 @@ venv .venv:
 setup $(PYPACKAGE_NAME).egg-info: pyproject.toml .venv
 	. .venv/bin/activate; python -m pip install -e .[dev,test]
 	touch $(PYPACKAGE_NAME).egg-info
-	rm -f .egg-info
+	-rm -f .egg-info
 
 # Install the pre-commit hooks.
 pre-commit: $(PRE_COMMIT_HOOKS)
@@ -250,11 +249,3 @@ clean-deps:
 			$(addsuffix -build-deps, $(DEBIAN_SOURCE_DEPS)) \
 		; \
 		sudo apt-get autoremove)
-
-# Fingerprint the source code.  Run this in a fresh clone of the
-# repository.  Refer to the Continuous Integration workflow
-# (.github/workflows/ci.yml) for more information.
-hash-source-code:
-	@find pyproject.toml docs src -type f -exec cat '{}' \; \
-		| sha512sum \
-		| awk '{print "hash=" $$1}'

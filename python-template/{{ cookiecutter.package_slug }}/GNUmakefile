@@ -139,7 +139,6 @@ $(addprefix .git/hooks/, \
 	docsclean \
 	flask \
 	gettext \
-	hash-source-code \
 	html \
 	lint \
 	locale \
