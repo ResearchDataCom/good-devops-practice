@@ -1,3 +1,13 @@
+## v1.0.2 (2026-04-01)
+
+### Bug Fixes
+
+- update release engineering workflows to version 2.1.1
+
+### Refactoring
+
+- standardize workflow file extensions
+
 ## v1.0.1 (2026-03-28)
 
 ### Bug Fixes
