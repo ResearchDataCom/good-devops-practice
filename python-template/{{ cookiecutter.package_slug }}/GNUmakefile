@@ -208,7 +208,7 @@ lint: $(PRE_COMMIT_HOOKS)
 
 # Perform comprehensive functional and integration testing.
 test tests coverage .coverage: $(PYPACKAGE_NAME).egg-info $(SOURCEISH) $(UNTRACKED)
-	$(PYTEST) --cov=$(PYPACKAGE_NAME) \
+	$(PYTEST) --cov=$(PYPACKAGE_NAME) --cov-report html:cov_html \
 		$(if $(WEBDRIVER),--driver $(WEBDRIVER)) $(PYTEST_ARGS)
 
 # Run a shorter, faster subset of the test suite.
@@ -321,7 +321,7 @@ distclean:
 
 # Remove build artifacts and reset the development environment.
 clean: docsclean distclean
-	rm -rf build* .coverage .pytest_cache .venv* $(PRE_COMMIT_HOOKS)
+	rm -rf build* .coverage cov_* .pytest_cache .venv* $(PRE_COMMIT_HOOKS)
 	find . -type d -name __pycache__ -print | xargs rm -rf
 	find . -type d -name \*.egg-info -print | xargs rm -rf
 
