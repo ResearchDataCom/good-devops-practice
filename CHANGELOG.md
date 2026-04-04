@@ -1,3 +1,9 @@
+## v1.1.0 (2026-04-04)
+
+### New Features
+
+- **python-template**: generate test coverage reports
+
 ## v1.0.2 (2026-04-01)
 
 ### Bug Fixes
