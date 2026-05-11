@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 # cf. tool.setuptools.package-dir section below
 name = "good-devops-practice"
 description = "Research Data and Communication Technologies' secure software development and IT operations discipline enables research at scale."
-version = "1.1.0"
+version = "2.0.0"
 # cf. https://www.bitecode.dev/p/relieving-your-python-packaging-pain,
 # https://devguide.python.org/versions/
 requires-python = ">=3.12"

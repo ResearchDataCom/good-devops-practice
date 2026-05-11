@@ -1,3 +1,9 @@
+## v2.0.0 (2026-05-11)
+
+### New Features
+
+- move templates to a dedicated repository
+
 ## v1.1.0 (2026-04-04)
 
 ### New Features
