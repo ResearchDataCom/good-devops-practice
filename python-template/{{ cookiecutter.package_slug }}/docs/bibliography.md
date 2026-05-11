@@ -1,6 +1,0 @@
-# Annotated Bibliography
-
-:::{bibliography}
-:all:
-
-:::
