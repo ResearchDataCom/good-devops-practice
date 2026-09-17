@@ -1,3 +1,15 @@
+## v3.0.0 (2026-09-17)
+
+### Bug Fixes
+
+- reference _A DoD Enterprise DevSecOps Reference Design_
+- link to Linux sysadmin training
+- describe the true direction of tasks cards on Kyle's jamboard
+
+### New Features
+
+- dedicate this work to the public domain
+
 ## v2.0.0 (2026-05-11)
 
 ### New Features
