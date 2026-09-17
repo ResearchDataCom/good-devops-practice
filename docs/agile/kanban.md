@@ -14,7 +14,7 @@ _signboard_ and inspired by Toyota's lean manufacturing system of the
 Kanban implementations can be as simple as sticky notes on a
 whiteboard.  For example, the following illustrates how Kyle Lewis
 managed a security incident response team using Google Jamboard, with
-task cards moving from left to right.
+task cards moving clockwise.
 
 ::::::{grid} 3 3 3 3
 :gutter: 1 1 1 2
