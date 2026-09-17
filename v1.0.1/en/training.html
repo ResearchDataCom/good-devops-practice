@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Training Materials" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="training.html" />
+<meta property="og:site_name" content="good-devops-practice" />
+<meta property="og:description" content="Neither by nature, then, nor contrary to nature do the virtues arise in us; rather we are adapted by nature to receive them, and are made perfect by habit. Aristotle, Nicomachean Ethics, This is a ..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="_images/social_previews/summary_training_55e20b4a.png" />
+<meta property="og:image:alt" content="Neither by nature, then, nor contrary to nature do the virtues arise in us; rather we are adapted by nature to receive them, and are made perfect by habit. Aristotle, Nicomachean Ethics, This is a ..." />
+<meta name="description" content="Neither by nature, then, nor contrary to nature do the virtues arise in us; rather we are adapted by nature to receive them, and are made perfect by habit. Aristotle, Nicomachean Ethics, This is a ..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>Training Materials &#8212; good-devops-practice</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=423d4ce3"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script defer="defer" src="https://unpkg.com/@popperjs/core@2"></script>
+    <script defer="defer" src="https://unpkg.com/tippy.js@6"></script>
+    <script defer="defer" src="_static/tippy/training.1add93df-489d-4f22-a292-98d57c3fa3ce.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'training';</script>
+    <link rel="icon" href="_static/favicon-32x32.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Common Tools" href="tooling.html" />
+    <link rel="prev" title="Secrets Management" href="design/secrets.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">good-devops-practice</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Versions">
+  <div class="bd-toc-item navbar-nav">
+    <ul class="nav bd-sidenav">
+      <li class="caption has-children"><strong>Version:</strong> v1.0.1<details><summary><span class="toctree-toggle" role="presentation"><svg class="svg-inline--fa fa-chevron-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg><!-- <i class="fa-solid fa-chevron-down"></i> Font Awesome fontawesome.com --></span></summary>
+      <a href="../../v3.0.0/en/index.html">v3.0.0</a>
+      <a href="../../v2.0.0/en/index.html">v2.0.0</a>
+      <a href="../../v1.1.0/en/index.html">v1.1.0</a>
+      <a href="../../v1.0.2/en/index.html">v1.0.2</a>
+      <a href="../../v1.0.1/en/index.html">v1.0.1</a>
+      <a href="../../v1.0.0/en/index.html">v1.0.0</a>
+      </details></li>
+      <li class="caption has-children"><strong>Language:</strong> en</li>
+    </ul>
+  </div>
+</div></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charter.html">Project Charter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guidelines</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="agile/index.html">Project Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="agile/kanban.html">The Task Board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agile/charter.html">Chartering New Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agile/backlog.html">Program Increment (PI) Planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agile/sprints.html">Sprint Planning and Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="git/index.html">Version Control</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="git/config.html">Git Client Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git/layout.html">Common Repository Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git/atomic.html">Atomic Commits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git/conventional.html">Commit Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git/workflow.html">Feature Branch Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="build/index.html">Continuous Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="build/linting.html">Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build/testing.html">Test-driven Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build/reproducible.html">Reproducible Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build/packaging.html">Packaging and Publishing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build/sphinx.html">Document Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build/actions.html">GitHub Actions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="deploy/index.html">Continuous Delivery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="deploy/environments.html">Live Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy/monitoring.html">Monitoring and Alerting</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="style/index.html">Style Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="style/bash.html">Bash Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style/compose.html">Docker Compose Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style/docker.html">Docker Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style/javascript.html">JavaScript Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style/json.html">JavaScript Object Notation (JSON) Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style/makefile.html">Make Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style/markdown.html">Markdown Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style/opentofu.html">OpenTofu Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style/python.html">Python Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style/toml.html">TOML Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style/yaml.html">YAML Style Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="design/index.html">Design Patterns</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="design/wireframing.html">Wireframing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/secrets.html">Secrets Management</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Training Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tooling.html">Common Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Annotated Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ResearchDataCom/good-devops-practice" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ResearchDataCom/good-devops-practice/edit/main/docs/training.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ResearchDataCom/good-devops-practice/issues/new?title=Issue%20on%20page%20%2Ftraining.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/training.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Training Materials</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#foundations">Foundations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-management">Project Management</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-computing">Cloud Computing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-security">Information Security</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming">Programming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-driven-development">Test-driven Development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+
+  <section class="tex2jax_ignore mathjax_ignore" id="training-materials">
+<h1>Training Materials<a class="headerlink" href="#training-materials" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>Neither by nature, then, nor contrary to nature do the virtues arise
+in us; rather we are adapted by nature to receive them, and are made
+perfect by habit.</p>
+<p class="attribution">—Aristotle, <em>Nicomachean Ethics</em></p>
+</div></blockquote>
+<p>This is a curated list of related reading materials, free training,
+workshops, and similar resources, with an emphasis on cloud
+infrastructure in clinical research settings.</p>
+<section id="foundations">
+<h2>Foundations<a class="headerlink" href="#foundations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://missing.csail.mit.edu/">The Missing Semester of Your CS Education</a></p></li>
+<li><p><a class="reference external" href="https://gitimmersion.com/">Git Immersion</a></p></li>
+<li><p><a class="reference external" href="https://devopswithdocker.com/">DevOps with Docker</a></p></li>
+<li><p><a class="reference external" href="https://devopswithkubernetes.com/">DevOps with Kubernetes</a></p></li>
+<li><p><a class="reference external" href="https://tdd.mooc.fi/">Test-Driven Development</a></p></li>
+<li><p><a class="reference external" href="https://fullstackopen.com/">Deep Dive into Modern Web Development</a></p></li>
+<li><p><a class="reference external" href="https://sites.gatech.edu/omscsopencourseware/">Georgia Tech Online Master of Science in Computer Science (OMSCS) Open Courseware</a></p></li>
+</ul>
+</section>
+<section id="project-management">
+<h2>Project Management<a class="headerlink" href="#project-management" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/agile-certified-exam-outline.pdf">PMI Agile Certified Practitioner (ACP) Exam Content Outline</a></p></li>
+<li><p><a class="reference external" href="https://blog.lpains.net/posts/2022-09-05-github-sprint-projects/">Running Agile projects in GitHub Projects</a></p></li>
+<li><p><a class="reference external" href="https://community.atlassian.com/forums/Agile/Scrum-vs-Kanban-Key-Differences-in-Project-Management/ba-p/2331061">Scrum vs Kanban: Key Differences in Project Management Methodologies</a></p></li>
+<li><p><a class="reference external" href="https://developer.cyberark.com/blog/running-a-kanban-standup-meeting/">Running a Kanban Standup Meeting</a></p></li>
+<li><p><a class="reference external" href="https://www.easyagile.com/blog/use-cases-vs-user-stories/">Use Cases vs. User Stories: How They Differ and When to Use Them</a></p></li>
+</ul>
+</section>
+<section id="version-control">
+<h2>Version Control<a class="headerlink" href="#version-control" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://git-scm.com/book/en/v2"><em>Pro Git</em> (2nd. ed.)</a></p></li>
+<li><p><a class="reference external" href="https://jan-krueger.net/git-cheat-sheet-extended-edition">Git cheat sheet, extended edition</a></p></li>
+<li><p><a class="reference external" href="https://jvns.ca/blog/2023/11/01/confusing-git-terminology/">Confusing git terminology</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=SjlxILg69ek">Git Happens</a></p></li>
+<li><p><a class="reference external" href="https://ohmygit.org/">Oh My Git!</a></p></li>
+<li><p><a class="reference external" href="https://alexwlchan.net/a-plumbers-guide-to-git/">A Plumber’s Guide to Git</a></p></li>
+<li><p><a class="reference external" href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">Git Feature Branch Workflow</a>,
+also known as
+<a class="reference external" href="https://trunkbaseddevelopment.com/">trunk-based development</a> or
+<a class="reference external" href="https://alvinalexander.com/git/git-topic-branch-workflow-pattern-pro-git/">topic branches</a></p></li>
+</ul>
+</section>
+<section id="cloud-computing">
+<h2>Cloud Computing<a class="headerlink" href="#cloud-computing" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ResearchDataCom/get-good-with-gitops">Get Good with GitOps</a></p></li>
+<li><p><a class="reference external" href="https://developers.redhat.com/articles/2022/07/20/git-workflows-best-practices-gitops-deployments">Workflows for GitOps deployments</a></p></li>
+<li><p><a class="reference external" href="https://www.maxivanov.io/github-actions-deploy-to-multiple-environments-from-single-workflow/">Deploy to multiple environments from a single GitHub Actions workflow</a></p></li>
+<li><p><a class="reference external" href="https://alastaircrabtree.com/posts/one-click-deploys-to-multiple-environments-using-github-actions/">One-click deploys to multiple environments using GitHub Actions</a></p></li>
+<li><p><a class="reference external" href="https://www.cncf.io/phippy/">The Illustrated Children’s Guide to Kubernetes</a></p></li>
+<li><p><a class="reference external" href="https://www.cncf.io/blog/2023/09/29/recommended-architectures-for-postgresql-in-kubernetes/">Recommended architectures for PostgreSQL in Kubernetes</a></p></li>
+<li><p><a class="reference external" href="https://web.archive.org/web/20220626102001/https://marcoml.dev/en/post/aws-lambda-ci-cd-with-aws-sam-code-pipeline-and-cloud-formation/">AWS Lambda - CI/CD with AWS SAM, CodePipeline &amp; CloudFormation</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/playlist?list=PLT98CRl2KxKEUHie1m24-wkyHpEsa4Y70">Learn Linux TV: Getting started with Ansible</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/playlist?list=PLT98CRl2KxKHnlbYhtABg6cF50bYa8Ulo">Learn Linux TV: Proxmox Full Course</a></p></li>
+<li><p><a class="reference external" href="https://disaster-recovery.workshop.aws/">Disaster Recovery on AWS</a></p></li>
+</ul>
+</section>
+<section id="information-security">
+<h2>Information Security<a class="headerlink" href="#information-security" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ost2.fyi/">OpenSecurityTraining2</a></p></li>
+<li><p><a class="reference external" href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html">OWASP HTTP Headers Cheat Sheet</a></p></li>
+<li><p><a class="reference external" href="https://textbook.cs161.org/"><em>Computer Security</em> (CS 161 textbook)</a></p></li>
+<li><p><a class="reference external" href="https://www.crowdstrike.com/blog/going-beyond-malware-the-rise-of-living-off-the-land-attacks/">Living off the land</a></p></li>
+<li><p><a class="reference external" href="https://openid.net/developers/how-connect-works/">What is OpenID Connect</a></p></li>
+<li><p><a class="reference external" href="https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc">An Illustrated Guide to OAuth and OpenID Connect (OIDC)</a></p></li>
+<li><p><a class="reference external" href="https://www.linkedin.com/posts/marksimos_i-mapped-microsoft-technology-and-guidance-activity-7262050350977675264-EIN-">Mapping Microsoft technology and guidance to the Adaptive Access capability in the Zero Trust Reference Model</a></p></li>
+<li><p><a class="reference external" href="https://www.latacora.com/blog/2020/03/12/the-soc-starting/">The SOC2 Starting Seven</a></p></li>
+<li><p><a class="reference external" href="https://fly.io/blog/soc2-the-screenshots-will-continue-until-security-improves/">SOC2: The Screenshots Will Continue Until Security Improves</a>,
+plus these Hacker News comments:
+<a class="reference external" href="https://news.ycombinator.com/item?id=44362436">[1]</a>,
+<a class="reference external" href="https://news.ycombinator.com/item?id=44362665">[2]</a>,
+<a class="reference external" href="https://news.ycombinator.com/item?id=44362720">[3]</a></p></li>
+</ul>
+</section>
+<section id="programming">
+<h2>Programming<a class="headerlink" href="#programming" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://greenteapress.com/wp/think-python-3rd-edition/"><em>Think Python</em> (3rd. Ed.)</a></p></li>
+<li><p><a class="reference external" href="https://www.learntla.com/">Learn TLA+ (Temporal Logic of Actions)</a>,
+<a class="reference external" href="https://news.ycombinator.com/item?id=42656433">related Hacker News thread on formal methods</a></p></li>
+<li><p><a class="reference external" href="https://blog.borrego.dev/entries/how-we-teach-frontend-with-vanilla-js.html">How we teach front-end development using vanilla JS</a></p></li>
+<li><p><a class="reference external" href="http://habitatchronicles.com/2017/05/what-are-capabilities/">What Are Capabilities?</a></p></li>
+<li><p><a class="reference external" href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf">Secure Software Development Framework v1.1</a></p></li>
+</ul>
+</section>
+<section id="test-driven-development">
+<h2>Test-driven Development<a class="headerlink" href="#test-driven-development" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://testautomationu.applitools.com/selenium-webdriver-python-tutorial/">Selenium WebDriver with Python</a></p></li>
+<li><p><a class="reference external" href="https://www.tim-corley.dev/blog/automated-ui-testing-with-selenium-pytest">Automated UI Testing with Selenium &amp; PyTest</a>,
+<a class="reference external" href="https://github.com/tim-corley/selenium-pytest">supporting materials</a></p></li>
+<li><p><a class="reference external" href="https://web.archive.org/web/2/https://medium.com/&#64;seifeddinerajhi/unit-testing-aws-lambda-with-python-and-mock-aws-services-using-moto-80e1855c16e1">Unit Testing AWS Lambda with Python and Mock AWS Services Using Moto</a>,
+<a class="reference external" href="https://github.com/seifrajhi/Python-AWS-Lambda-Testing">supplementary materials</a></p></li>
+<li><p><a class="reference external" href="https://pawamoy.github.io/posts/same-pytest-fixtures-with-different-scopes/">Same Pytest fixtures with different scopes</a></p></li>
+</ul>
+</section>
+<section id="miscellaneous">
+<h2>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://colinpurrington.com/tips/poster-design/">Designing Conference Posters</a></p></li>
+<li><p><a class="reference external" href="https://www.stationx.net/vi-cheat-sheet/">A well laid out vi cheat sheet</a></p></li>
+<li><p><a class="reference external" href="https://www.nslookup.io/learning/">Everything you wanted to know about DNS</a></p></li>
+<li><p><a class="reference external" href="https://hpc-ecosystems.gitlab.io/training/openhpc-2.x-guide/">HPC Ecosystems OpenHPC 2.x Training Guide</a></p></li>
+</ul>
+</section>
+</section>
+
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="design/secrets.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Secrets Management</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tooling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Common Tools</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#foundations">Foundations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-management">Project Management</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-computing">Cloud Computing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-security">Information Security</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming">Programming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-driven-development">Test-driven Development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Research Data and Communication Technologies Benefit Corp.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

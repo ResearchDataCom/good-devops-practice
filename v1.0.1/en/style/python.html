@@ -1,0 +1,714 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Python Style Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="style/python.html" />
+<meta property="og:site_name" content="good-devops-practice" />
+<meta property="og:description" content="This extends PEP 8, the Python community’s style guide, and the Python Packaging User Guide. Packaging: A Python project MUST deliver Python packages with both a source distribution (sdist) and one..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="_images/social_previews/summary_style_python_416c53af.png" />
+<meta property="og:image:alt" content="This extends PEP 8, the Python community’s style guide, and the Python Packaging User Guide. Packaging: A Python project MUST deliver Python packages with both a source distribution (sdist) and one..." />
+<meta name="description" content="This extends PEP 8, the Python community’s style guide, and the Python Packaging User Guide. Packaging: A Python project MUST deliver Python packages with both a source distribution (sdist) and one..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>Python Style Guide &#8212; good-devops-practice</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=423d4ce3"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script defer="defer" src="https://unpkg.com/@popperjs/core@2"></script>
+    <script defer="defer" src="https://unpkg.com/tippy.js@6"></script>
+    <script defer="defer" src="../_static/tippy/style/python.6ade5ac6-2563-414e-8406-3c15679c6434.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'style/python';</script>
+    <link rel="icon" href="../_static/favicon-32x32.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TOML Style Guide" href="toml.html" />
+    <link rel="prev" title="OpenTofu Style Guide" href="opentofu.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">good-devops-practice</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Versions">
+  <div class="bd-toc-item navbar-nav">
+    <ul class="nav bd-sidenav">
+      <li class="caption has-children"><strong>Version:</strong> v1.0.1<details><summary><span class="toctree-toggle" role="presentation"><svg class="svg-inline--fa fa-chevron-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg><!-- <i class="fa-solid fa-chevron-down"></i> Font Awesome fontawesome.com --></span></summary>
+      <a href="../../v3.0.0/en/index.html">v3.0.0</a>
+      <a href="../../v2.0.0/en/index.html">v2.0.0</a>
+      <a href="../../v1.1.0/en/index.html">v1.1.0</a>
+      <a href="../../v1.0.2/en/index.html">v1.0.2</a>
+      <a href="../../v1.0.1/en/index.html">v1.0.1</a>
+      <a href="../../v1.0.0/en/index.html">v1.0.0</a>
+      </details></li>
+      <li class="caption has-children"><strong>Language:</strong> en</li>
+    </ul>
+  </div>
+</div></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../charter.html">Project Charter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../agile/index.html">Project Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../agile/kanban.html">The Task Board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agile/charter.html">Chartering New Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agile/backlog.html">Program Increment (PI) Planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agile/sprints.html">Sprint Planning and Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../git/index.html">Version Control</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git/config.html">Git Client Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git/layout.html">Common Repository Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git/atomic.html">Atomic Commits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git/conventional.html">Commit Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git/workflow.html">Feature Branch Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../build/index.html">Continuous Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../build/linting.html">Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/testing.html">Test-driven Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/reproducible.html">Reproducible Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/packaging.html">Packaging and Publishing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/sphinx.html">Document Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/actions.html">GitHub Actions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deploy/index.html">Continuous Delivery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deploy/environments.html">Live Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy/monitoring.html">Monitoring and Alerting</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Style Guides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bash.html">Bash Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compose.html">Docker Compose Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Docker Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">JavaScript Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">JavaScript Object Notation (JSON) Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="makefile.html">Make Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markdown.html">Markdown Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opentofu.html">OpenTofu Style Guide</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Python Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toml.html">TOML Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html">YAML Style Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/index.html">Design Patterns</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../design/wireframing.html">Wireframing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/secrets.html">Secrets Management</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../training.html">Training Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tooling.html">Common Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Annotated Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../credits.html">Credits</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ResearchDataCom/good-devops-practice" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ResearchDataCom/good-devops-practice/edit/main/docs/style/python.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ResearchDataCom/good-devops-practice/issues/new?title=Issue%20on%20page%20%2Fstyle/python.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/style/python.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python Style Guide</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packaging">Packaging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-system">Build System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-settings">Project Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-dependencies">Optional Dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-constraints">Version Constraints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-summary">Project Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-layout">Distribution Layout</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+
+  <section class="tex2jax_ignore mathjax_ignore" id="python-style-guide">
+<h1>Python Style Guide<a class="headerlink" href="#python-style-guide" title="Link to this heading">#</a></h1>
+<p>This extends <a class="reference external" href="https://peps.python.org/pep-0008/">PEP 8</a>, the Python
+community’s style guide, and the
+<a class="reference external" href="https://packaging.python.org/"><em>Python Packaging User Guide</em></a>.</p>
+<section id="packaging">
+<h2>Packaging<a class="headerlink" href="#packaging" title="Link to this heading">#</a></h2>
+<p>A Python project <strong>MUST</strong> deliver Python packages with both a source
+distribution (sdist) and one or more binary distributions (wheels).
+Python packages <strong>MUST</strong> be defined by a <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file at the
+top of the project’s source tree; cf. the <a class="reference internal" href="toml.html"><span class="doc std std-doc">TOML Style Guide</span></a>.
+While the sections of a <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file can appear in any order,
+sorting sections alphabetically in decending order is <strong>RECOMMENDED</strong>.</p>
+<p>Standalone modules (unpackaged <code class="docutils literal notranslate"><span class="pre">.py</span></code> files) <strong>MAY</strong> be used as code
+samples or configuration files.  However, standalone modules <strong>MUST
+NOT</strong> be used as project deliverables since they inherently lack the
+versioning and dependency metadata required to generate a
+<a class="reference internal" href="#sbom"><span class="xref myst">software bill of materials</span></a>.</p>
+<section id="build-system">
+<h3>Build System<a class="headerlink" href="#build-system" title="Link to this heading">#</a></h3>
+<p>A Python project <strong>MUST</strong> use
+<a class="reference external" href="https://pypi.org/project/setuptools/">setuptools</a> version 61 or newer
+as the build system.  Project setup scripts and configuration files
+such as <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> <strong>SHOULD NOT</strong> be used.</p>
+</section>
+<section id="project-settings">
+<h3>Project Settings<a class="headerlink" href="#project-settings" title="Link to this heading">#</a></h3>
+<p>The following project settings are <strong>REQUIRED</strong>:</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Package names <strong>MUST</strong> be all lower case, e.g., <code class="docutils literal notranslate"><span class="pre">mylib</span></code>, not
+<code class="docutils literal notranslate"><span class="pre">MyLib</span></code>.  The elements of multipart names <strong>SHOULD</strong> be separated by
+dashes, not underscores, e.g., <code class="docutils literal notranslate"><span class="pre">updoot-inator</span></code>, not <code class="docutils literal notranslate"><span class="pre">updoot_inator</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">description</span></code></dt><dd><p>This <strong>MUST</strong> match the
+<a class="reference internal" href="#layout#project-description"><span class="xref myst">project description</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">version</span></code></dt><dd><p>A Python project <strong>MUST</strong> use <a class="reference internal" href="#semver.md"><span class="xref myst">Semantic Versioning</span></a>.  A
+new Python project <strong>MUST</strong> set the version number to <code class="docutils literal notranslate"><span class="pre">0.0.0</span></code> and
+increment it using
+<a class="reference external" href="https://python-semantic-release.readthedocs.io/">python-semantic-release</a>
+after merging a <a class="reference external" href="https://docs.pytest.org/en/latest/index.html#features" title="pytest 9.2.0.dev339"><span class="xref myst">feature branch</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">requires-python</span></code></dt><dd><p>The minimum supported version of Python <strong>MUST</strong> be specified.  It
+<strong>SHOULD</strong> be no older than the newest Python version with a status
+of <code class="docutils literal notranslate"><span class="pre">security</span></code>.  Note that this requires periodic updates.  For more
+information, refer to
+<a class="reference external" href="https://www.bitecode.dev/p/relieving-your-python-packaging-pain">“Relieving your Python packaging pain”</a>
+and the
+<a class="reference external" href="https://devguide.python.org/versions/">Status of Python versions</a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">classifiers</span></code></dt><dd><p>A proprietary Python project <strong>MUST</strong> specify the <code class="docutils literal notranslate"><span class="pre">&quot;Private</span> <span class="pre">::</span> <span class="pre">Do</span> <span class="pre">Not</span> <span class="pre">Upload&quot;</span></code> Trove classifier.  Additional classifiers <strong>MAY</strong> be
+specified; cf. <a class="reference external" href="https://pypi.org/classifiers/">Classifiers</a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dependencies</span></code></dt><dd><p>Except for
+<a class="reference external" href="https://pypi.org/project/pip-with-requires-python/"><code class="docutils literal notranslate"><span class="pre">pip-with-requires-python</span></code></a>,
+<a class="reference external" href="https://pypi.org/project/pip/"><code class="docutils literal notranslate"><span class="pre">pip</span></code></a>, and
+<a class="reference external" href="https://pypi.org/project/setuptools/"><code class="docutils literal notranslate"><span class="pre">setuptools</span></code></a>, a Python
+project <strong>MUST</strong> list all non-standard packages on which it depends
+even if its target operating environment includes those packages by
+default.  The list <strong>SHOULD</strong> be sorted alphabetically to make
+reading it easier.  Dependencies <strong>MUST NOT</strong> be listed in a
+separate file.</p>
+</dd>
+</dl>
+</section>
+<section id="optional-dependencies">
+<h3>Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Link to this heading">#</a></h3>
+<p>A Python project <strong>MUST</strong> define the following optional dependency
+lists:</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">dev</span></code></dt><dd><p>Developers use these Python packages to develop, lint, and build the
+project, e.g., <code class="docutils literal notranslate"><span class="pre">black</span></code>, <code class="docutils literal notranslate"><span class="pre">isort</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">test</span></code></dt><dd><p>Developers use these Python packages used to test the project, e.g.,
+<code class="docutils literal notranslate"><span class="pre">pytest</span></code>.</p>
+</dd>
+</dl>
+<p>A Python project <strong>MAY</strong> define additional optional dependency lists.
+To make reading them easier, optional dependency lists <strong>SHOULD</strong> be
+defined in alphabetical order, and each list of optional dependencies
+<strong>SHOULD</strong> be sorted alphabetically.</p>
+<p>An optional dependency list <strong>MUST NOT</strong> depend on other optional
+dependency lists.  For example, if the same package is needed for both
+development and testing, it should be on both the <code class="docutils literal notranslate"><span class="pre">dev</span></code> and <code class="docutils literal notranslate"><span class="pre">test</span></code>
+lists.  That let’s package builders install the desired functionality</p>
+<p>Optional dependencies <strong>MUST NOT</strong> be listed in a separate file.</p>
+</section>
+<section id="version-constraints">
+<h3>Version Constraints<a class="headerlink" href="#version-constraints" title="Link to this heading">#</a></h3>
+<p>To avoid unnecessary developer overhead, a Python project <strong>SHOULD</strong>
+only set version constraints on dependencies or optional dependencies
+to address capability, compatibility, or security issues.  A Python
+project <strong>SHOULD NOT</strong> pin specific versions of dependencies or
+optional dependencies.  Any version constraint <strong>MUST</strong> be preceded by
+a comment explaining the developer’s rationale for setting the
+constraint.</p>
+<p>If a Python project depends on an outdated or unreleased version of a
+dependency or an optional dependency, the developer <strong>MUST</strong> log a
+high-priority bug report detailing their rationale for setting the
+constraint.  The reason for setting the constraint <strong>MUST</strong> be
+addressed, and the constraint <strong>MUST</strong> be removed, before the next
+major release.</p>
+</section>
+<section id="project-summary">
+<h3>Project Summary<a class="headerlink" href="#project-summary" title="Link to this heading">#</a></h3>
+<p>A Python project <strong>MUST</strong> include the project summary document,
+<code class="docutils literal notranslate"><span class="pre">README.md</span></code>, with a content type of <code class="docutils literal notranslate"><span class="pre">text/markdown</span></code>.</p>
+</section>
+<section id="distribution-layout">
+<h3>Distribution Layout<a class="headerlink" href="#distribution-layout" title="Link to this heading">#</a></h3>
+<p>To prevent accidental usage of in-development code, all Python
+projects <strong>MUST</strong> follow
+<a class="reference external" href="https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/">the “src” distribution layout</a>.</p>
+</section>
+</section>
+</section>
+
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="opentofu.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">OpenTofu Style Guide</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="toml.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">TOML Style Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packaging">Packaging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-system">Build System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-settings">Project Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-dependencies">Optional Dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-constraints">Version Constraints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-summary">Project Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-layout">Distribution Layout</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Research Data and Communication Technologies Benefit Corp.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

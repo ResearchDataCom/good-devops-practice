@@ -1,0 +1,828 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Feature Branch Workflow" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="git/workflow.html" />
+<meta property="og:site_name" content="good-devops-practice" />
+<meta property="og:description" content="Encapsulate development work in dedicated, temporary branches of a Git repository. The main branch of the repository only contains known-good source code or configuration files, and the head of the..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="_images/social_previews/summary_git_workflow_9c201810.png" />
+<meta property="og:image:alt" content="Encapsulate development work in dedicated, temporary branches of a Git repository. The main branch of the repository only contains known-good source code or configuration files, and the head of the..." />
+<meta name="description" content="Encapsulate development work in dedicated, temporary branches of a Git repository. The main branch of the repository only contains known-good source code or configuration files, and the head of the..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>Feature Branch Workflow &#8212; good-devops-practice</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5549cc85"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script defer="defer" src="https://unpkg.com/@popperjs/core@2"></script>
+    <script defer="defer" src="https://unpkg.com/tippy.js@6"></script>
+    <script defer="defer" src="../_static/tippy/git/workflow.d28fcafd-6801-443c-b3f5-f4663f152d49.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'git/workflow';</script>
+    <link rel="icon" href="../_static/favicon-32x32.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Continuous Integration" href="../build/index.html" />
+    <link rel="prev" title="Commit Messages" href="conventional.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">good-devops-practice</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Versions">
+  <div class="bd-toc-item navbar-nav">
+    <ul class="nav bd-sidenav">
+      <li class="caption has-children"><strong>Version:</strong> v1.0.2<details><summary><span class="toctree-toggle" role="presentation"><svg class="svg-inline--fa fa-chevron-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg><!-- <i class="fa-solid fa-chevron-down"></i> Font Awesome fontawesome.com --></span></summary>
+      <a href="../../v3.0.0/en/index.html">v3.0.0</a>
+      <a href="../../v2.0.0/en/index.html">v2.0.0</a>
+      <a href="../../v1.1.0/en/index.html">v1.1.0</a>
+      <a href="../../v1.0.2/en/index.html">v1.0.2</a>
+      <a href="../../v1.0.1/en/index.html">v1.0.1</a>
+      <a href="../../v1.0.0/en/index.html">v1.0.0</a>
+      </details></li>
+      <li class="caption has-children"><strong>Language:</strong> en</li>
+    </ul>
+  </div>
+</div></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../charter.html">Project Charter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../agile/index.html">Project Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../agile/kanban.html">The Task Board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agile/charter.html">Chartering New Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agile/backlog.html">Program Increment (PI) Planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agile/sprints.html">Sprint Planning and Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Version Control</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="config.html">Git Client Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout.html">Common Repository Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="atomic.html">Atomic Commits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conventional.html">Commit Messages</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Feature Branch Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../build/index.html">Continuous Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../build/linting.html">Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/testing.html">Test-driven Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/reproducible.html">Reproducible Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/packaging.html">Packaging and Publishing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/sphinx.html">Document Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/actions.html">GitHub Actions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deploy/index.html">Continuous Delivery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deploy/environments.html">Live Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy/monitoring.html">Monitoring and Alerting</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../style/index.html">Style Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../style/bash.html">Bash Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/compose.html">Docker Compose Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/docker.html">Docker Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/javascript.html">JavaScript Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/json.html">JavaScript Object Notation (JSON) Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/makefile.html">Make Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/markdown.html">Markdown Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/opentofu.html">OpenTofu Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/python.html">Python Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/toml.html">TOML Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/yaml.html">YAML Style Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/index.html">Design Patterns</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../design/wireframing.html">Wireframing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/secrets.html">Secrets Management</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../training.html">Training Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tooling.html">Common Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Annotated Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../credits.html">Credits</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ResearchDataCom/good-devops-practice" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ResearchDataCom/good-devops-practice/edit/main/docs/git/workflow.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ResearchDataCom/good-devops-practice/issues/new?title=Issue%20on%20page%20%2Fgit/workflow.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/git/workflow.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Feature Branch Workflow</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-commit-history">Linear Commit History</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-branch">The Main Branch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-head-of-the-main-branch">The Head of the Main Branch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-branches">Feature Branches</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-work-in-progress-to-a-feature-branch">Moving Work in Progress to a Feature Branch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-a-feature-branch">Updating a Feature Branch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-a-feature-branch">Merging a Feature Branch</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+
+  <section class="tex2jax_ignore mathjax_ignore" id="feature-branch-workflow">
+<h1>Feature Branch Workflow<a class="headerlink" href="#feature-branch-workflow" title="Link to this heading">#</a></h1>
+<p>Encapsulate development work in dedicated, temporary branches of a Git
+repository.  The main branch of the repository only contains
+known-good source code or configuration files, and the head of the
+main branch always matches the latest release or live deployment.</p>
+<section id="linear-commit-history">
+<h2>Linear Commit History<a class="headerlink" href="#linear-commit-history" title="Link to this heading">#</a></h2>
+<div class="admonition-guidance admonition">
+<p class="admonition-title">Guidance</p>
+<p>Developers <strong>MUST</strong> maintain the linear commit history of a Git
+repository as this simplifies code review and facilitates root cause
+analysis.  Merge commits <strong>MUST NOT</strong> be used as they can hide risky
+code changes.  Squash commits <strong>SHOULD NOT</strong> be used, either, as they
+discard historical context useful during root cause analysis.</p>
+</div>
+<p>Always use the <code class="docutils literal notranslate"><span class="pre">--ff-only</span></code> option to the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code>
+commands.  Likewise, always use <code class="docutils literal notranslate"><span class="pre">--rebase</span></code> option to the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>
+command, or set <code class="docutils literal notranslate"><span class="pre">pull.rebase</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code> in the Git configuration.</p>
+</section>
+<section id="the-main-branch">
+<h2>The Main Branch<a class="headerlink" href="#the-main-branch" title="Link to this heading">#</a></h2>
+<div class="admonition-guidance admonition">
+<p class="admonition-title">Guidance</p>
+<p>The main branch of a Git repository <strong>MUST</strong> contain only released
+software versions or live (production) system definitions.</p>
+</div>
+<p>The main branch does not contain work in progress except during
+initial development, prior to the project’s initial release or
+deployment.</p>
+</section>
+<section id="the-head-of-the-main-branch">
+<h2>The Head of the Main Branch<a class="headerlink" href="#the-head-of-the-main-branch" title="Link to this heading">#</a></h2>
+<div class="admonition-guidance admonition">
+<p class="admonition-title">Guidance</p>
+<p>The latest commit (or head) of the main branch of the Git repository
+<strong>MUST</strong> be the project’s latest release or current (active)
+configuration.</p>
+</div>
+<p>For infrastructure-as-code projects, staff should be able to redeploy
+a service from scratch given the head of the main branch of the Git
+repository, the service’s secrets and other runtime configuration
+parameters, and a recent copy of the service’s persistent data
+storage.</p>
+</section>
+<section id="feature-branches">
+<h2>Feature Branches<a class="headerlink" href="#feature-branches" title="Link to this heading">#</a></h2>
+<div class="admonition-guidance admonition">
+<p class="admonition-title">Guidance</p>
+<p>All changes to published software or live services <strong>MUST</strong> be
+developed and tested in branches starting from the then-current head
+of the main branch of the project’s Git repository.</p>
+</div>
+<p>Limit a feature branch to a single <a class="reference external" href="https://en.wikipedia.org/wiki/deliverable#">deliverable</a>.
+The branch name succinctly describes the work, e.g., <code class="docutils literal notranslate"><span class="pre">stepup-mfa</span></code>,
+<code class="docutils literal notranslate"><span class="pre">mfa-enforcement-fixes</span></code>.  Git supports multiple feature branches being
+worked simultaneously.  To reduce the likelihood of a merge conflict
+synchronize the main branch with the authoritative repository<a class="footnote-reference brackets" href="#origin" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>
+before creating a new feature branch, and configure
+<a class="reference external" href="https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches">remote tracking</a>
+immediately after:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>--rebase<span class="w"> </span>origin<span class="w"> </span>main
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>new-feature
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>new-feature
+</pre></div>
+</div>
+</section>
+<section id="moving-work-in-progress-to-a-feature-branch">
+<h2>Moving Work in Progress to a Feature Branch<a class="headerlink" href="#moving-work-in-progress-to-a-feature-branch" title="Link to this heading">#</a></h2>
+<div class="admonition-guidance admonition">
+<p class="admonition-title">Guidance</p>
+<p>If work in progress was mistakenly pushed to the main branch of the
+authoritative repository, the functional or task area lead <strong>MUST</strong> be
+notified within one (1) hour.  No further action <strong>SHALL</strong> be taken
+except at their direction.</p>
+</div>
+<p>If instead the work in progress was mistakenly committed to the main
+branch but <em>not yet</em> pushed to the authoritative repository, move the
+work in progress to a feature branch:</p>
+<ol class="arabic simple">
+<li><p>Record the state of the working directory, preserving any new work
+or uncommitted changes.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>stash<span class="w"> </span>push<span class="w"> </span>--all<span class="w"> </span>--message<span class="w"> </span>WIP
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Create a new feature branch from the current head of the main
+branch.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>new-feature
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Reset the main branch.  In the commands shown below, change
+<code class="docutils literal notranslate"><span class="pre">original-head</span></code> to a revision parameter specifying the latest
+approved release or configuration.  The revision parameter could be
+a tag like <code class="docutils literal notranslate"><span class="pre">v1.1.0</span></code>, a symbolic reference like <code class="docutils literal notranslate"><span class="pre">HEAD~3</span></code>, or a
+commit object like <code class="docutils literal notranslate"><span class="pre">a1b2c3d4</span></code>.  For more information, refer to
+<a class="reference external" href="https://git-scm.com/docs/git-rev-parse">“Specifying Revisions” in the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rev-parse</span></code> command documentation</a>.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>original-head
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Switch back to the new feature branch, and upload it to the
+authoritative repository.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>new-feature
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>new-feature
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Restore the new work or uncommitted changes saved at the beginning
+of this process.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>stash<span class="w"> </span>pop
+</pre></div>
+</div>
+</section>
+<section id="updating-a-feature-branch">
+<h2>Updating a Feature Branch<a class="headerlink" href="#updating-a-feature-branch" title="Link to this heading">#</a></h2>
+<div class="admonition-guidance admonition">
+<p class="admonition-title">Guidance</p>
+<p>Merge commits <strong>MUST NOT</strong> be used as they can hide risky code
+changes.  Squash commits <strong>SHOULD NOT</strong> be used, either, as they
+discard historical context useful during
+<a class="reference external" href="https://en.wikipedia.org/wiki/Root-cause_analysis#">root-cause analysis</a>.</p>
+</div>
+<p>Because Git supports work occurring simultaneously in the same branch
+of multiple clones of a repository, the original head of a feature
+branch can eventually no longer be the head of the corresponding
+remote-tracking branch.  Pushing changes commited to the feature
+branch without accounting for recent changes to the remote-tracking
+branch would effectively delete other developers’ work from the Git
+repository.  By default, Git will handle this situation by creating a
+merge commit and prompting the user to fix any conflicts (when the
+same file was modified in both branches).</p>
+<p>Instead, rebase the feature branch on the head of the remote-tracking
+branch prior to merging to preserve the linear commit history of the
+Git repository:</p>
+<ol class="arabic simple">
+<li><p>Synchronize the feature branch with the remote-tracking branch.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull<span class="w"> </span>--rebase<span class="w"> </span>origin<span class="w"> </span>new-feature
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line">Address any merge conflicts.</a></p></li>
+<li><p>Update the remote-tracking branch.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>--force-with-lease<span class="w"> </span>origin<span class="w"> </span>new-feature
+</pre></div>
+</div>
+</section>
+<section id="merging-a-feature-branch">
+<h2>Merging a Feature Branch<a class="headerlink" href="#merging-a-feature-branch" title="Link to this heading">#</a></h2>
+<div class="admonition-guidance admonition">
+<p class="admonition-title">Guidance</p>
+<p>Merging a feature branch with the main branch, thereby releasing a new
+software version or changing a live service’s configuration, <strong>MUST</strong>
+be approved by the Change Advisory Board.</p>
+</div>
+<p>Because Git supports work occurring simultaneously in multiple
+branches of a repository, the starting commit of a feature branch may
+eventually no longer be the head of the main branch.  Merging a
+feature branch without accounting for recent changes to the main
+branch would effectively delete delivered code or approved changes
+from the Git repository.  By default, Git will handle this situation
+by creating a merge commit and prompting the user to fix any conflicts
+(when the same file was modified in both branches).</p>
+<p>Instead, rebase the feature branch on the head of the main branch
+prior to merging to preserve the linear commit history of the Git
+repository:</p>
+<ol class="arabic simple">
+<li><p>Synchronize the main branch with the authoritative repository.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>--rebase<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>As a precaution, re-synchronize the feature branch with the
+authoritative repository.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>new-feature
+git<span class="w"> </span>pull<span class="w"> </span>--rebase<span class="w"> </span>origin<span class="w"> </span>new-feature
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Rebase the feature branch on the main branch.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>rebase<span class="w"> </span>main
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line">Address any merge conflicts.</a></p></li>
+<li><p>Update the remote-tracking branch.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>--force-with-lease<span class="w"> </span>origin<span class="w"> </span>new-feature
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Prune the merged feature branch.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>--delete<span class="w"> </span>new-feature
+git<span class="w"> </span>push<span class="w"> </span>--delete<span class="w"> </span>origin<span class="w"> </span>new-feature
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Tag the new head of the main branch with the new version number.
+This process may be automatic.  For more information, refer to
+<a class="reference internal" href="../build/index.html"><span class="doc std std-doc">Continuous Integration</span></a>.</p></li>
+<li><p>In clones of the authoritative repository, update the main branch
+and release tags, and prune merged feature branches.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>--rebase<span class="w"> </span>origin<span class="w"> </span>main
+git<span class="w"> </span>fetch<span class="w"> </span>--prune<span class="w"> </span>--tags
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="origin" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>By default, clones of the authoritative repository call it
+the <code class="docutils literal notranslate"><span class="pre">origin</span></code>
+<a class="reference external" href="https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes">remote repository</a>.</p>
+</aside>
+</aside>
+
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="conventional.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Commit Messages</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../build/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Continuous Integration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-commit-history">Linear Commit History</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-branch">The Main Branch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-head-of-the-main-branch">The Head of the Main Branch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-branches">Feature Branches</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-work-in-progress-to-a-feature-branch">Moving Work in Progress to a Feature Branch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-a-feature-branch">Updating a Feature Branch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-a-feature-branch">Merging a Feature Branch</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Research Data and Communication Technologies Benefit Corp.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
