@@ -62,14 +62,15 @@ MACPORTS_BUILD_DEPS = \
 	shellcheck \
 	trivy \
 
-# Get the package name.
-PYPACKAGE_NAME = \
-$(shell $(TOMLQ) -r '.tool.setuptools."package-dir"|keys[0]' pyproject.toml)
+# Get the Python egg name.  This kludge assumes package names are
+# always in kebab-case, but the Right Way requires understanding of
+# pip's or setuptools' internals.
+EGG_NAME = $(shell $(TOMLQ) -r '.project.name|split("-")|join("_")' pyproject.toml)
 
 # Recursively list code, content, and test articles (as well as
 # related work in progress).
-SOURCEISH=$(or $(shell git ls-tree --full-tree --name-only -r HEAD src tests))
-UNTRACKED=$(or $(shell git ls-files --others --exclude-standard src tests))
+SOURCEISH ?= $(or $(shell git ls-tree --full-tree --name-only -r HEAD src))
+UNTRACKED ?= $(or $(shell git ls-files --others --exclude-standard src))
 
 # Prepare these translations of the documentation.
 TRANSLATIONS =
@@ -115,7 +116,8 @@ all: docs
 build-deps:
 	$(eval uname = $(or $(shell uname)))
 	$(if $(filter Darwin, $(uname)), \
-		sudo port -N install $(MACPORTS_BUILD_DEPS))
+		sudo port -N install $(MACPORTS_BUILD_DEPS); \
+	)
 	$(if $(filter Linux, $(uname)), \
 		$(eval distro = $(or $(shell lsb_release -is))))
 	$(if $(filter Debian Ubuntu, $(distro)), \
@@ -133,8 +135,10 @@ build-deps:
 		curl https://bootstrap.pypa.io/get-pip.py | python3.13 -; \
 		sudo DEBIAN_FRONTEND=noninteractive \
 			mk-build-deps -i -r -t "$(APT_GET_INSTALL)" \
-				$(DEBIAN_SOURCE_DEPS); \
-		rm -f *.buildinfo *.changes)
+				$(DEBIAN_SOURCE_DEPS) \
+		; \
+		rm -f *.buildinfo *.changes; \
+	)
 
 # Create the development environment.
 venv .venv:
@@ -144,14 +148,14 @@ venv .venv:
 	touch .venv
 
 # Set up the development environment.
-setup $(PYPACKAGE_NAME).egg-info: pyproject.toml .venv
+setup $(EGG_NAME).egg-info: pyproject.toml .venv
 	. .venv/bin/activate; python -m pip install -e .[dev,test]
-	touch $(PYPACKAGE_NAME).egg-info
+	touch $(EGG_NAME).egg-info
 	-rm -f .egg-info
 
 # Install the pre-commit hooks.
 pre-commit: $(PRE_COMMIT_HOOKS)
-.git/hooks/%: .pre-commit-config.yaml $(PYPACKAGE_NAME).egg-info
+.git/hooks/%: .pre-commit-config.yaml $(EGG_NAME).egg-info
 	$(PRE_COMMIT) validate-config
 	$(PRE_COMMIT) validate-manifest
 	$(PRE_COMMIT) install --install-hooks --hook-type $*
@@ -161,16 +165,16 @@ lint: $(PRE_COMMIT_HOOKS)
 	$(PRE_COMMIT) run --show-diff-on-failure --all-files
 
 # Route these targets to Sphinx using its "make mode" option.
-gettext html rinoh: | $(PYPACKAGE_NAME).egg-info
+gettext html rinoh: | $(EGG_NAME).egg-info
 	$(SPHINXBUILD) -M $@ docs build $(SPHINXOPTS) $(O)
 
 # Prepare or update message catalogs for translation.
 locale locales: $(addprefix docs/_locales/, $(TRANSLATIONS))
-docs/_locales/%: gettext | $(PYPACKAGE_NAME).egg-info
+docs/_locales/%: gettext | $(EGG_NAME).egg-info
 	$(SPHINXINTL) -c docs/conf.py update -p build -l $*
 
 # Build the documentation.
-docs: | $(PYPACKAGE_NAME).egg-info
+docs: | $(EGG_NAME).egg-info
 # Create missing remote-tracking branches.
 	LOCAL_BRANCHES=$$(git branch \
 		| grep -E -v '^..(HEAD|gh-pages|main|master|releases?(/.*)?)$$' \
@@ -184,12 +188,9 @@ docs: | $(PYPACKAGE_NAME).egg-info
 		|| git branch $$lb $$rb; \
 	done
 # Generate the index.
-	mkdir -p build
+	mkdir -p build/docs
 	cat /dev/null > build/versions.txt
-	VERSIONS=$$(git tag | sort -r; git branch \
-		| grep -E -v '^..(HEAD|gh-pages|main|master|releases?(/.*)?)$$' \
-		| cut -c 3-); \
-	CURRENT_VERSION=$$(echo $$VERSIONS | head -1); \
+	VERSIONS=$$(git tag | sort -r); \
 	for v in $$VERSIONS; do \
 		TRANSLATIONS=$$( \
 			echo en; \
@@ -200,6 +201,9 @@ docs: | $(PYPACKAGE_NAME).egg-info
 		echo { \"$$v\": $$(echo "$$TRANSLATIONS" | jq -cRn '[inputs]') } \
 		>> build/versions.txt; \
 	done
+	LATEST_VERSION=$$(git tag | sort -r | head -1); \
+	sed -e s/LATEST_VERSION/$$LATEST_VERSION/ \
+		docs/.index.html > build/docs/index.html
 	cat build/versions.txt | jq -s add > build/versions.json
 # Copy the repository to a temporary directory.  Stash the Sphinx
 # configuration from the real work tree for later use.
@@ -209,6 +213,7 @@ docs: | $(PYPACKAGE_NAME).egg-info
 	cp build/versions.json docs/conf.py docs/_templates/versions.html \
 		$(TMP)/build
 # Build the documentation for each translation of each version.
+	set -eux; \
 	. .venv/bin/activate; \
 	cd $(TMP); \
 	for v in $$(jq -r 'keys[]' build/versions.json); do \
@@ -231,7 +236,7 @@ docsclean:
 
 # Remove build artifacts and reset the development environment.
 clean: docsclean
-	rm -rf build* .pytest_cache .venv* $(PRE_COMMIT_HOOKS)
+	rm -rf build* .venv* $(PRE_COMMIT_HOOKS)
 	find . -type d -name __pycache__ -print | xargs rm -rf
 	find . -type d -name \*.egg-info -print | xargs rm -rf
 
@@ -240,7 +245,8 @@ clean: docsclean
 clean-deps:
 	$(eval uname = $(or $(shell uname)))
 	$(if $(filter Darwin, $(uname)), \
-		sudo port uninstall $(MACPORTS_BUILD_DEPS))
+		sudo port uninstall $(MACPORTS_BUILD_DEPS); \
+	)
 	$(if $(filter Linux, $(uname)), \
 		$(eval distro = $(or $(shell lsb_release -is))))
 	$(if $(filter Debian Ubuntu, $(distro)), \
@@ -248,4 +254,5 @@ clean-deps:
 			$(DEBIAN_BUILD_DEPS) \
 			$(addsuffix -build-deps, $(DEBIAN_SOURCE_DEPS)) \
 		; \
-		sudo apt-get autoremove)
+		sudo apt-get autoremove; \
+	)

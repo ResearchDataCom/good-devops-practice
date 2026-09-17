@@ -23,8 +23,7 @@ classifiers = [
 # To avoid unnecessary developer overhead, only set version
 # constraints to address capability, compatibility, or security
 # issues, and avoid pinning specific versions if possible.
-dependencies = [
-]
+dependencies = []
 
 [project.optional-dependencies]
 dev = [
@@ -34,6 +33,7 @@ dev = [
     "commitizen",
     "cookiecutter",
     "id",
+    "ipdb",
     "isort",
     "jedi",
     "matplotlib",
@@ -46,7 +46,8 @@ dev = [
     "rinohtype",
     "sphinxcontrib-bibtex",
     "sphinxcontrib-svg2pdfconverter[CairoSVG]",
-    "sphinx-book-theme",
+    "sphinx-autodoc2[cli]",
+    "sphinx-book-theme==1.2.0",
     "sphinx-intl",
     "sphobjinv",
     "twine",
@@ -64,8 +65,6 @@ dev = [
     "flake8-future-import",
     "flake8-pytest-style",
     "flake8-requirements",
-]
-test = [
 ]
 
 [project.readme]
@@ -96,5 +95,6 @@ test = "Testing"
 profile = "black"
 skip_gitignore = true
 
-[tool.setuptools.package-dir]
-good_devops_practice = "src/good_devops_practice"
+[tool.setuptools]
+packages = []
+py-modules = []

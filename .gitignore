@@ -1,7 +1,10 @@
 ## Python (https://github.com/github/gitignore)
 
-# Virtual environments can be named anything, but these are pretty
-# typical.
+# Do not store credentials in Git repositories!
+.secrets*
+.vars*
+
+# Virtual environments can be named anything, but these are common.
 .env*
 .venv*
 env*.bak*/
@@ -18,7 +21,6 @@ venv*/
 .mypy_cache/
 .pyre/
 .pytype/
-*.bkp
 *.iml
 *.ipr
 *.iws
@@ -38,7 +40,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Only specify version constraints in pyproject.toml.
+# Only specify version constraints in pyproject.toml.  Freeze
+# dependencies at release time, instead.
 .pdm.toml
 .python-version
 pdm.lock
@@ -58,6 +61,7 @@ requirements*.txt
 .tox/
 *.cover
 *.py,cover
+cov_*
 cover/
 coverage.xml
 htmlcov/

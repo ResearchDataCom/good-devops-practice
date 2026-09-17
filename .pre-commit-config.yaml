@@ -1,17 +1,15 @@
-# Ignore temporary files/folders and cookiecutter templates (which
-# deliberately fail linting), but note that this doesn't always work.
-# Check each linter's documentation for any required tool-specific
-# exclusions; cf. https://stackoverflow.com/a/75560858.
+# Ignore temporary files/folders, but note that this doesn't always
+# work.  Check each linter's documentation for any required
+# tool-specific exclusions; cf. https://stackoverflow.com/a/75560858.
 exclude: |-
   (?x)^(
       build.*|
-      dist.*|
-      .*-template/.*
+      dist.*
   )$
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer
@@ -20,21 +18,21 @@ repos:
   # Ensure commit messages use Conventional Commits formatting;
   # cf. pyproject.toml.
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.13.9
+    rev: cd6c8a50525d5407c58a2aaac30a35befbf9b05e  # frozen: v4.18.1
     hooks:
       - id: commitizen
         stages: [commit-msg]
 
   # Check shell scripts, limiting output to errors and warnings.
   - repo: https://github.com/koalaman/shellcheck-precommit
-    rev: v0.11.0
+    rev: 99470f5e12208ff0fb17ab81c3c494f7620a1d8d  # frozen: v0.11.0
     hooks:
       - id: shellcheck
         args: ["--severity=warning"]
 
   # Check GitHub Actions workflows.
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.11
+    rev: 914e7df21a07ef503a81201c76d2b11c789d3fca  # frozen: v1.7.12
     hooks:
       - id: actionlint
 
@@ -47,13 +45,14 @@ repos:
         entry: pinact run -u --min-age 7
         pass_filenames: false
 
-  # Check Python syntax.
+  # Check Python syntax/style.
   - repo: https://github.com/pycqa/flake8
-    rev: 7.3.0
+    rev: d93590f5be797aabb60e3b09f2f52dddb02f349f  # frozen: 7.3.0
     hooks:
       - id: flake8
-        # Keep the list of flake8 plugins in sync with pyproject.toml.
         additional_dependencies:
+          # Keep the list of flake8 plugins in sync with
+          # pyproject.toml.
           - dlint
           - flake8-bandit
           - flake8-bugbear
@@ -67,12 +66,12 @@ repos:
 
   # Sort Python imports.
   - repo: https://github.com/pycqa/isort
-    rev: 8.0.1
+    rev: 131f4adcd5582bfc53928ab0d740eceb8b506b6c  # frozen: 9.0.1
     hooks:
       - id: isort
 
   # Reformat Python code after sorting imports.
   - repo: https://github.com/psf/black
-    rev: 26.3.1
+    rev: 87928e6d6761a4a6d22250e1fee5601b3998086e  # frozen: 26.5.1
     hooks:
       - id: black
