@@ -1,3 +1,6 @@
+# This work is marked CC0 1.0 Universal.  To view a copy of this mark,
+# visit https://creativecommons.org/publicdomain/zero/1.0/.
+
 # Ignore temporary files/folders, but note that this doesn't always
 # work.  Check each linter's documentation for any required
 # tool-specific exclusions; cf. https://stackoverflow.com/a/75560858.
@@ -75,3 +78,23 @@ repos:
     rev: 87928e6d6761a4a6d22250e1fee5601b3998086e  # frozen: 26.5.1
     hooks:
       - id: black
+
+  # Make sure files (excluding binary files, examples, or template
+  # outputs) reference the license.
+  - repo: local
+    hooks:
+      - id: publicdomain
+        name: Public domain dedication
+        language: pygrep
+        entry: work is marked CC0
+        args: [--negate]
+        exclude: |
+          (?x)^(
+              CHANGELOG.md|
+              LICENSE.md|
+              .*\.png|
+              .*\.svg|
+              .*\.ico|
+              docs/_static/site.webmanifest|
+              docs/style/pyproject.toml.example
+          )$

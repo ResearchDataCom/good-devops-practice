@@ -1,4 +1,10 @@
-(intro/get-started)=
+<!---
+
+This work is marked CC0 1.0 Universal.  To view a copy of this mark,
+visit https://creativecommons.org/publicdomain/zero/1.0/.
+
+--->
+
 # Get Started
 
 {attribution="[I just want to serve 5 terabytes.](https://www.youtube.com/watch?v=3t6L-FlfeaI)"}

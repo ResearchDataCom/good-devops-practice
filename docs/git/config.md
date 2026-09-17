@@ -1,3 +1,10 @@
+<!---
+
+This work is marked CC0 1.0 Universal.  To view a copy of this mark,
+visit https://creativecommons.org/publicdomain/zero/1.0/.
+
+--->
+
 # Git Client Configuration
 
 Access remote repositories and sign commits with Git, OpenSSH, GnuPG,

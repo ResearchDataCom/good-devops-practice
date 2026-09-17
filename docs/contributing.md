@@ -1,3 +1,10 @@
+<!---
+
+This work is marked CC0 1.0 Universal.  To view a copy of this mark,
+visit https://creativecommons.org/publicdomain/zero/1.0/.
+
+--->
+
 # Contribution Guidelines
 
 The project practices [test-driven development](https://tdd.mooc.fi/)
@@ -12,10 +19,9 @@ submitting them for review as a
 
 :::{admonition} Guidance
 
-This project **REQUIRES**
-[GNU Make](https://www.gnu.org/software/make/),
-[OpenTofu](https://www.opentofu.org/) 1.12, and
-[Python](https://www.python.org/) 3.13 or newer.
+This project **REQUIRES** [Git](https://git-scm.com/),
+[GNU Make](https://www.gnu.org/software/make/), and
+[Python](https://www.python.org/) 3.12 or newer.
 
 :::
 

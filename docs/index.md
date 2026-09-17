@@ -1,6 +1,12 @@
 ---
 sd_hide_title: True
 ---
+<!---
+
+This work is marked CC0 1.0 Universal.  To view a copy of this mark,
+visit https://creativecommons.org/publicdomain/zero/1.0/.
+
+--->
 
 # Introduction
 
@@ -25,7 +31,7 @@ sd_hide_title: True
 :child-align: justify
 :class: sd-fs-5
 
-```{rubric} Good DevOps Practice
+```{rubric} RDCT Good DevOps Practice
 ```
 
 Research Data and Communication Technologies' secure software

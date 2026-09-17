@@ -1,3 +1,6 @@
+# This work is marked CC0 1.0 Universal.  To view a copy of this mark,
+# visit https://creativecommons.org/publicdomain/zero/1.0/.
+
 # Avoid problems on systems where the SHELL variable might be
 # inherited from the environment.
 SHELL = /bin/sh
@@ -24,7 +27,7 @@ $(if $(call pathsearch,.venv/bin,$(1)), \
 
 # Develop using the latest available supported version of Python.
 PYTHON = \
-$(call pathsearch,$(PATH),python3.13 python3.12 python3.11,exit 1; echo python3)
+$(call pathsearch,$(PATH),python3.14 python3.13 python3.12,exit 1; echo python3)
 PYTHON_VERSION = \
 $(shell $(PYTHON) -c "import sys;print('{}.{}'.format(*sys.version_info[:2]))")
 
