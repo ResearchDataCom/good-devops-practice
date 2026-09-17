@@ -12,6 +12,7 @@ infrastructure in clinical research settings.
 ## Foundations
 
 - [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
+- [Linux Journey](https://labex.io/linuxjourney)
 - [Git Immersion](https://gitimmersion.com/)
 - [DevOps with Docker](https://devopswithdocker.com/)
 - [DevOps with Kubernetes](https://devopswithkubernetes.com/)
