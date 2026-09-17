@@ -24,7 +24,7 @@ knowledge than samizdat.
 
 > What will this project do?  What's our mission?
 
-TODO: refactor this as learning objectives
+<!-- TODO: refactor this as learning objectives -->
 
 - establish secure coding standards
 

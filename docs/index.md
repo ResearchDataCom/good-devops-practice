@@ -144,6 +144,8 @@ including the following:
 
 - [FDA _Computer Software Assurance for Production and Quality System Software_](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/computer-software-assurance-production-and-quality-system-software-0)
 
+- [_A DoD Enterprise DevSecOps Reference Design_](https://dodcio.defense.gov/Portals/0/Documents/Library/DoDRefDesignCloudGithub.pdf)
+
 - [OWASP _DevSecOps Guideline_](https://owasp.org/www-project-devsecops-guideline/)
 
 - [_DevSecOps Playbook_](https://github.com/6mile/DevSecOps-Playbook)
@@ -173,9 +175,8 @@ publishing follows the same standards and practices described herein.
 ## Structure
 
 This document contains three major sections.  The frontmatter
-introduces the RDCT Engineering team's DevOps strategy and outlines
-the [happy path](wiki:Happy_path) for new projects.  The main body of
-the work provides instructions covering project management, version
+introduces the RDCT Engineering team's DevOps strategy.  The main body
+of the work provides instructions covering project management, version
 control, continuous integration, and continuous delivery as well as
 supplementary---but still authoritative---guidance for specific tool
 chains or techniques.  Appendices organize key reference materials.
